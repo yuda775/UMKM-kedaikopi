@@ -1,3 +1,8 @@
+<?php
+require_once 'db.php';
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -7,8 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
   <!-- My CSS -->
   <link rel="stylesheet" href="assets/stylesheet/settings.css">
@@ -19,16 +23,16 @@
 <body>
   <div class="container m-5 p-5 mx-auto rounded border" style="background-color: whitesmoke;">
     <h1 class="text-center">Settings</h1>
-    <form action="" method="post">
+    <form action="update.php" method="post">
 
       <div class="umkm-profile">
         <h4 class="mt-5">UMKM</h4>
         <div class="row">
           <div class="form-group col">
-            <input type="text" class="form-control" id="exampleFormControlInput1" name="nama_umkm" placeholder="Nama UMKM">
+            <input type="text" class="form-control" id="exampleFormControlInput1" name="nama_umkm" placeholder="Nama UMKM" value="<?php echo getValue('nama_umkm') ?>">
           </div>
           <div class="form-group col">
-            <input type="text" class="form-control" id="exampleFormControlInput1" name="tagline_umkm" placeholder="Tagline UMKM">
+            <input type="text" class="form-control" id="exampleFormControlInput1" name="tagline_umkm" placeholder="Tagline UMKM" value="<?php echo getValue('tagline_umkm') ?>">
           </div>
         </div>
       </div>
@@ -37,13 +41,13 @@
         <h4 class="mt-2">Panel</h4>
         <div class="row panel mt-1">
           <div class="col-md-4">
-            <input type="text" class="form-control" name="panel_1" placeholder="Panel 1">
+            <input type="text" class="form-control" name="panel_1" placeholder="Panel 1" value="<?php echo getValue('panel_1') ?>">
           </div>
           <div class="col-md-4">
-            <input type="text" class="form-control" name="panel_2" placeholder="Panel 2">
+            <input type="text" class="form-control" name="panel_2" placeholder="Panel 2" value="<?php echo getValue('panel_2') ?>">
           </div>
           <div class="col-md-4">
-            <input type="text" class="form-control" name="panel_3" placeholder="Panel 3">
+            <input type="text" class="form-control" name="panel_3" placeholder="Panel 3" value="<?php echo getValue('panel_3') ?>">
           </div>
         </div>
       </div>
@@ -182,7 +186,7 @@
       <div class="about">
         <h4 class="mt-4">About UMKM</h4>
         <div class="form-group">
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="about_umkm" placeholder="About"></textarea>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="about_umkm" placeholder="About"><?php echo getValue('about_umkm') ?></textarea>
         </div>
       </div>
 
@@ -190,13 +194,13 @@
         <h4 class="mt-4">Social Media</h4>
         <div class="row panel mt-2">
           <div class="col-md-4">
-            <input type="text" class="form-control" name="instagram" placeholder="Instagram">
+            <input type="text" class="form-control" name="instagram" placeholder="Instagram" value="<?php echo getValue('instagram') ?>">
           </div>
           <div class="col-md-4">
-            <input type="text" class="form-control" name="whatsapp" placeholder="Whatsapp">
+            <input type="text" class="form-control" name="whatsapp" placeholder="Whatsapp" value="<?php echo getValue('whatsapp') ?>">
           </div>
           <div class="col-md-4">
-            <input type="text" class="form-control" name="gmail" placeholder="Gmail">
+            <input type="text" class="form-control" name="gmail" placeholder="Gmail" value="<?php echo getValue('gmail') ?>">
           </div>
         </div>
       </div>
@@ -266,15 +270,9 @@
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>

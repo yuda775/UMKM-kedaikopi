@@ -1,41 +1,40 @@
+<?php
+require_once 'db.php';
+?>
+
+
 <!doctype html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-    <!-- my Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- my Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&family=Finger+Paint&display=swap"
-      rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&family=Finger+Paint&display=swap"
-      rel="stylesheet">
-    <link
-      href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&family=Finger+Paint&family=Ubuntu+Mono:ital,wght@0,400;1,700&display=swap"
-      rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&family=Finger+Paint&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&family=Finger+Paint&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&family=Finger+Paint&family=Ubuntu+Mono:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
 
-    <!-- my CSS -->
-    <link rel="stylesheet" href="assets/stylesheet/style.css">
+  <!-- my CSS -->
+  <link rel="stylesheet" href="assets/stylesheet/style.css">
 
-    <title>Homepage</title>
+  <title>Homepage</title>
 </head>
 
 <body>
   <!-- Navbar -->
   <nav class="navbar fixed-top navbar-expand-lg">
     <div class="container">
-      <a class="navbar-brand" href="#">Daikohi</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="#"><?php echo getValue('nama_umkm') ?></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -60,24 +59,24 @@
   <!-- jumbotron -->
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <h1 class="display-2">Kopi nikmat gak bikin kembung</h1>
-      <a href="#">Find more</a>
+      <h1 class="display-2"><?php echo getValue('tagline_umkm') ?></h1>
+      <a href="#menu">Find more</a>
     </div>
   </div>
 
   <!-- panel -->
-  <div class="panel container row align-items-center justify-content-between">
-    <div class="col-lg-4 text-center">
+  <div class="panel row justify-content-between align-items-center">
+    <div class="col-lg-4 text-center list-panel">
       <img src="assets/images/icon-calendar.png" alt="">
-      <p>Buka setiap hari <br> 08.00 - 23.00</p>
+      <p><?php echo getValue('panel_1') ?></p>
     </div>
-    <div class="col-lg-4 text-center">
+    <div class="col-lg-4 text-center list-panel">
       <img src="assets/images/icon-price.png" alt="">
-      <p>Harga terjangkau</p>
+      <p><?php echo getValue('panel_2') ?></p>
     </div>
-    <div class="col-lg-4 text-center">
+    <div class="col-lg-4 text-center list-panel">
       <img src="assets/images/icon-map.png" alt="">
-      <p>Jl. Braga No. 125 <br> Kota Bandung</p>
+      <p><?php echo getValue('panel_3') ?></p>
     </div>
   </div>
 
@@ -86,7 +85,7 @@
     <div class="content-header">
       <h1 class="section-title display-4">Menu</h1>
       <hr>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis maiores quo quidem nulla, amet cupiditate porro explicabo labore in cumque harum eaque ipsa, nemo ut! Necessitatibus ducimus perspiciatis doloremque veritatis pariatur quae iste iure rem magnam, adipisci illum quis ab, amet quisquam deleniti non, nostrum corrupti obcaecati quidem id.</p>
+      <h3>Rekomendasi Menu Spesial Kami.</h3>
     </div>
     <div class="content-body row mt-5">
       <div class="col-lg-4">
@@ -118,12 +117,12 @@
       </div>
       <div class="col-lg-4">
         <a href="menu.html">
-        <div class="card" style="background-image: url(assets/images/card-next.jpg);">
-          <h4>Click here <br> to find more menu</h4>
+          <div class="card" style="background-image: url(assets/images/card-next.jpg);">
+            <h4>Click here <br> to find more menu</h4>
             <img class="mx-auto mt-3" src="assets/icons/🦆 icon _arrow circle right_.png" alt="" width="40%">
-          </a>
-        </div>
+        </a>
       </div>
+    </div>
     </div>
   </section>
 
@@ -142,7 +141,7 @@
       <div class="col-lg-4">
         <img src="assets/images/grabfood.png" alt="" width="80%">
       </div>
-    </div>  
+    </div>
   </section>
 
   <section id="contact" class="container background">
@@ -175,30 +174,30 @@
             </div>
           </div>
         </div>
-        <div class="form-group">          
+        <div class="form-group">
           <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="Message" name="message" required></textarea>
         </div>
         <button type="submit" class="btn btn-dark btn-lg">Submit</button>
       </form>
-    </div>  
+    </div>
   </section>
 
   <footer>
     <div class="container">
-      <h3>Daikohi</h3>
+      <h3><?php echo getValue('nama_umkm') ?></h3>
       <div class="row mt-3 align-items-center justify-content-between">
         <div class="col-lg-9">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis distinctio, quae quaerat deserunt nesciunt incidunt maxime ea dolorem accusantium nostrum, debitis aliquid, fugit est ipsa perspiciatis! Qui magnam nihil et iusto magni, labore ab ipsam laudantium, esse quasi alias sequi unde ipsum cumque debitis aspernatur. Provident a, dignissimos quod voluptatibus nemo sequi consequuntur dolore natus suscipit sit eius cupiditate necessitatibus quae debitis, reprehenderit vel, ipsum id placeat quia aperiam labore odit! Ipsam iste repellendus dolorum non eum officia illo optio accusantium rem itaque ex esse voluptas laudantium voluptate laboriosam aliquam cupiditate, perspiciatis maiores nostrum consequuntur aliquid. Animi cumque commodi consectetur!</p>
+          <p><?php echo getValue('about_umkm') ?></p>
         </div>
-        <div class="col-lg-2">          
+        <div class="col-lg-2">
           <a class="row" href="#">Home</a>
           <a class="row" href="#menu">Menu</a>
           <a class="row" href="#order">Order</a>
           <a class="row" href="#contact">Contact Us</a>
           <div class="row justify-content-around mt-3">
-            <img src="assets/images/contact-ig.png" alt="" width="40px">
-            <img src="assets/images/contact-whatsapp.png" alt="" width="40px">
-            <img src="assets/images/contact-gmail.png" alt="" width="40px">
+            <a href="<?php echo getValue('instagram') ?>"><img src="assets/images/contact-ig.png" alt="" width="40px"></a>
+            <a href="<?php echo getValue('whatsapp') ?>"><img src="assets/images/contact-whatsapp.png" alt="" width="40px"></a>
+            <a href="<?php echo getValue('gmail') ?>"><img src="assets/images/contact-gmail.png" alt="" width="40px"></a>
           </div>
         </div>
       </div>
@@ -210,19 +209,14 @@
 
 
 
+
   <script src="assets/javascript/script.js"></script>
-
-
 
   <!-- Optional JavaScript; choose one of the two! -->
 
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-      crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
   <!-- Option 2: Separate Popper and Bootstrap JS -->
   <!--
