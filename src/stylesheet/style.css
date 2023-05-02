@@ -172,11 +172,6 @@ form span {
     border-color: #8B4513 !important;
 }
 
-.inline-radio-button {
-    display: flex;
-    gap: 20px;    
-}
-
 .button-group {
     display: flex;
     gap: 10%;
@@ -218,6 +213,7 @@ footer {
 
 footer h3 {
     font-family: 'Elsie Swash Caps', cursive;
+    color: #e77c24;
 }
 
 footer p {
@@ -235,6 +231,10 @@ footer a {
 
 footer a:hover {    
     color: #FFEBB7;
+}
+
+footer small {
+    color: #e77c24;    
 }
 
 @media (max-width: 991.98px) {

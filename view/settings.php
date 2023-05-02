@@ -82,14 +82,33 @@ require_once '../src/php/db.php';
       <div class="social-media">
         <h4 class="mt-4">Social Media</h4>
         <div class="row panel mt-2">
-          <div class="col-md-4">
+          <div class="col-md-4 p-2">
+            <label>Instagram</label>
             <input type="text" class="form-control" name="instagram" placeholder="Instagram" value="<?php echo getValue('instagram') ?>">
+            <input type="text" class="form-control" name="instagram_profile" placeholder="Instagram link" value="<?php echo getValue('instagram_profile') ?>">
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 p-2">
+            <label>Facebook</label>
+            <input type="text" class="form-control" name="facebook" placeholder="facebook" value="<?php echo getValue('facebook') ?>">
+            <input type="text" class="form-control" name="facebook_profile" placeholder="facebook link" value="<?php echo getValue('facebook_profile') ?>">
+          </div>
+          <div class="col-md-4 p-2">
+            <label>Twitter</label>
+            <input type="text" class="form-control" name="twitter" placeholder="twitter" value="<?php echo getValue('twitter') ?>">
+            <input type="text" class="form-control" name="twitter_profile" placeholder="twitter link" value="<?php echo getValue('twitter_profile') ?>">
+          </div>
+          <div class="col-md-4 p-2">
+            <label>LinkedIn</label>
+            <input type="text" class="form-control" name="linkedin" placeholder="lingkedin" value="<?php echo getValue('linkedin') ?>">
+            <input type="text" class="form-control" name="linkedin_profile" placeholder="lingkedin link" value="<?php echo getValue('linkedin_profile') ?>">
+          </div>
+          <div class="col-md-4 p-2">
+            <label>Whatsapp</label>
             <input type="text" class="form-control" name="whatsapp" placeholder="Whatsapp" value="<?php echo getValue('whatsapp') ?>">
           </div>
-          <div class="col-md-4">
-            <input type="text" class="form-control" name="gmail" placeholder="Gmail" value="<?php echo getValue('gmail') ?>">
+          <div class="col-md-4 p-2">
+            <label for="">Email</label>
+            <input type="text" class="form-control" name="envelope" placeholder="Gmail" value="<?php echo getValue('envelope') ?>">
           </div>
         </div>
       </div>

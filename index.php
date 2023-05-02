@@ -151,35 +151,22 @@ require_once 'src/php/db.php';
   <section id="contact">
     <h1 class="section-title display-4 text-center">Contact Us</h1>
     <hr>
-    <form class="container py-5 px-5">
+    <form class="container py-5 px-5" method="post" action="src/php/send-email.php">
       <div class="form-group">
         <label for="namaLengkap">Nama Lengkap</label>
-        <input type="text" class="form-control" id="namaLengkap" placeholder="Masukkan nama lengkap anda" />
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Masukkan email anda" />
+        <input type="text" class="form-control" name="nama-lengkap" id="namaLengkap" placeholder="Masukkan nama lengkap anda" required autocomplete="off" />
       </div>
       <div class="form-group">
         <label for="noTelepon">No Telepon</label>
-        <input type="tel" class="form-control" id="noTelepon" placeholder="Masukkan no telepon anda" />
+        <input type="tel" class="form-control" name="no-telepon" id="noTelepon" placeholder="Masukkan no telepon anda" required autocomplete="off" />
       </div>
       <div class="form-group">
-        <label>Jenis Kelamin</label>
-        <div class="inline-radio-button">
-          <div class="custom-control custom-radio">
-            <input checked type="radio" id="radioLaki" name="jenisKelamin" class="custom-control-input" value="laki-laki" />
-            <span class="custom-control-label" for="radioLaki">Laki-laki</span>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="radioPerempuan" name="jenisKelamin" class="custom-control-input" value="perempuan" />
-            <span class="custom-control-label" for="radioPerempuan">Perempuan</span>
-          </div>
-        </div>
+        <label for="email">Email</label>
+        <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan email anda" required autocomplete="off" />
       </div>
       <div class="form-group">
         <label for="subjek">Subjek</label>
-        <select class="form-control" id="subjek">
+        <select class="form-control" id="subjek" name="subject" required>
           <option value="">Pilih subjek</option>
           <option value="pertanyaan">Pertanyaan</option>
           <option value="saran">Saran</option>
@@ -188,7 +175,7 @@ require_once 'src/php/db.php';
       </div>
       <div class="form-group">
         <label for="pesan">Pesan</label>
-        <textarea class="form-control" id="pesan" rows="4"></textarea>
+        <textarea class="form-control" name="pesan" id="pesan" rows="4" required></textarea>
       </div>
       <div class="button-group">
         <button type="submit" class="btn button-reset" id="kirimButton">
@@ -224,10 +211,12 @@ require_once 'src/php/db.php';
           if (mysqli_num_rows($result) > 0) {
             //tampilkan sosial media perusahaan
             while ($row = mysqli_fetch_assoc($result)) {
-              echo "<div class='social-media-group'>";
-              echo "<i class='fa fa-" . $row['name'] . "' aria-hidden='true'></i>";
-              echo "<a href='" . getValue($row['name'] . '_profile') . "'>" . $row['value'] . "</a>";
-              echo "</div>";
+              if (!empty($row['value'])) {
+                echo "<div class='social-media-group'>";
+                echo "<i class='fa fa-" . $row['name'] . "' aria-hidden='true'></i>";
+                echo "<a href='" . getValue($row['name'] . '_profile') . "'>" . $row['value'] . "</a>";
+                echo "</div>";
+              }
             }
           }
           ?>
@@ -244,10 +233,6 @@ require_once 'src/php/db.php';
       </div>
     </div>
   </footer>
-
-
-
-
 
 
 

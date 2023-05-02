@@ -37,3 +37,7 @@
   color: blue;
   cursor: pointer;
 }
+
+label {
+  display: inline;
+}

@@ -5,13 +5,27 @@ require_once 'db.php';
 // === Bagian Text ====
 $nama_umkm        = $_POST['nama_umkm'];
 $tagline_umkm     = $_POST['tagline_umkm'];
+
 $panel_1          = $_POST['panel_1'];
 $panel_2          = $_POST['panel_2'];
 $panel_3          = $_POST['panel_3'];
+
 $about_umkm       = $_POST['about_umkm'];
+
 $instagram        = $_POST['instagram'];
 $whatsapp         = $_POST['whatsapp'];
-$gmail            = $_POST['gmail'];
+$envelope         = $_POST['envelope'];
+$facebook         = $_POST['facebook'];
+$twitter          = $_POST['twitter'];
+$linkedin         = $_POST['linkedin'];
+
+$instagram_profile      = $_POST['instagram_profile'];
+$whatsapp_profile       = $_POST['whatsapp_profile'];
+$envelope_profile       = $_POST['envelope_profile'];
+$facebook_profile       = $_POST['facebook_profile'];
+$twitter_profile        = $_POST['twitter_profile'];
+$linkedin_profile       = $_POST['linkedin_profile'];
+
 
 // === Bagian File Gambar ===
 // mengambil nama file gambar jumbotron yang lama
@@ -70,9 +84,12 @@ $result = mysqli_query($conn, "UPDATE `settings` SET
                                     WHEN 'about_umkm'       THEN '$about_umkm'
                                     WHEN 'instagram'        THEN '$instagram'
                                     WHEN 'whatsapp'         THEN '$whatsapp'
-                                    WHEN 'gmail'            THEN '$gmail'                                   
+                                    WHEN 'envelope'         THEN '$envelope'                                   
+                                    WHEN 'facebook'         THEN '$facebook'
+                                    WHEN 'linkedin'         THEN '$linkedin'
+                                    WHEN 'twitter'          THEN '$twitter'  
                                     END
-                              WHERE `name` IN ('nama_umkm', 'tagline_umkm', 'panel_1', 'panel_2', 'panel_3', 'about_umkm', 'instagram', 'whatsapp', 'gmail')
+                              WHERE `name` IN ('nama_umkm', 'tagline_umkm', 'panel_1', 'panel_2', 'panel_3', 'about_umkm', 'instagram', 'whatsapp', 'envelope', 'facebook', 'linkedin', 'twitter')
                               ");
 
 header('Location: ../../index.php');
