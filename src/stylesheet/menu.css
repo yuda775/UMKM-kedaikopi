@@ -1,0 +1,147 @@
+body {
+    background-color: #FFEBB7;
+}
+
+.nav-color {
+    background-color: #3c3c3cfa;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(175, 175, 175)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.navbar-brand {
+    font-family: 'Elsie Swash Caps', cursive;
+    color: #FFEBB7;
+    font-size: 32px;
+    text-shadow: #000000 2px 3px;
+}
+
+.nav-link {
+    color: #FFEBB7;
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 30px;
+    text-shadow: #000000 2px 2px;
+}
+
+.nav-link:hover {
+    color: white;
+}
+
+.button {
+    padding: 5px;
+    background-color: #AD8E70;
+    border-radius: 10px;
+    text-shadow: none;
+    color: white;
+
+}
+
+.jumbotron-fluid {
+    background:
+        linear-gradient(rgba(0, 0, 0, 0.463),
+            rgba(34, 44, 44, 0.45)),
+        url(../../assets/images/kopi.jpg) fixed;
+    background-size: cover;
+    background-position: bottom;
+    height: 300px;
+}
+
+.menu-panel {
+    background: #FFFFFF;
+        box-shadow: 0px 2px 30px 13px rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
+    width: 100%;
+    height: 1000px;
+    margin-top: -200px;
+    margin-bottom: 100px;
+    padding: 20px;
+}
+
+h1 {
+    font-family: 'Cookie', cursive;
+    text-align: center;
+    font-size: 70px;
+}
+
+h2 {
+    font-family: 'Ubuntu Mono', monospace;
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+hr {
+    background-color: rgba(255, 68, 0, 0.426);
+    width: 80%;
+}
+
+.menu-body {
+    display: flex;      
+    justify-content: space-around;
+    margin-left: 20px;
+    flex-wrap: wrap;    
+    padding: 10px;    
+    height: 850px;
+    overflow-y: scroll;
+}
+
+.menu-body ul li {
+    list-style: none;
+    margin-left: -30px;
+}
+
+ul li img {    
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+}
+
+ul li img:hover {
+    border-radius: 5%;
+    transition: 500ms;
+}
+
+.menu-body p {
+    text-align: center;
+    font-weight: bold;
+}
+
+footer {
+    padding: 50px;
+    background-color: #3C3C3C;
+    color: #AD8E70;
+
+}
+
+footer h3 {
+    font-family: 'Elsie Swash Caps', cursive;
+}
+
+footer p {
+    border-left: #AD8E70 3px solid;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+footer a {
+    font-weight: bold;
+    color: #AD8E70;
+    font-size: 18px;
+}
+
+@media (max-width: 991.98px) {
+    nav {
+        background-color: #3c3c3cfa;
+    }
+
+    .button {
+        text-align: center;
+    }
+
+    .menu-panel {
+        width: 90%;
+    }
+}

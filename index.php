@@ -1,5 +1,5 @@
 <?php
-require_once 'db.php';
+require_once 'src/php/db.php';
 ?>
 
 
@@ -17,14 +17,16 @@ require_once 'db.php';
   <!-- my Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&family=Finger+Paint&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&family=Finger+Paint&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&family=Finger+Paint&family=Ubuntu+Mono:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
   <!-- my CSS -->
-  <link rel="stylesheet" href="assets/stylesheet/style.css">
+  <link rel="stylesheet" href="src/stylesheet/style.css">
 
   <title>Homepage</title>
 </head>
@@ -57,10 +59,9 @@ require_once 'db.php';
   </nav>
 
   <!-- jumbotron -->
-  <div class="jumbotron jumbotron-fluid">
+  <div class="jumbotron jumbotron-fluid" style="background-image: url('<?php echo 'assets/images/jumbotron/' . getValue('jumbotron_image'); ?>');">
     <div class="container">
       <h1 class="display-2"><?php echo getValue('tagline_umkm') ?></h1>
-      <a href="#menu">Find more</a>
     </div>
   </div>
 
@@ -116,7 +117,7 @@ require_once 'db.php';
         </div>
       </div>
       <div class="col-lg-4">
-        <a href="menu.html">
+        <a href="view/menu.php">
           <div class="card" style="background-image: url(assets/images/card-next.jpg);">
             <h4>Click here <br> to find more menu</h4>
             <img class="mx-auto mt-3" src="assets/icons/🦆 icon _arrow circle right_.png" alt="" width="40%">
@@ -126,6 +127,7 @@ require_once 'db.php';
     </div>
   </section>
 
+  <!-- Order -->
   <section id="order" class="container text-center">
     <div class="content-header">
       <h1 class="section-title display-4">You can order by</h1>
@@ -144,60 +146,99 @@ require_once 'db.php';
     </div>
   </section>
 
-  <section id="contact" class="container background">
-    <div class="content-header text-center pb-3">
-      <h1 class="section-title display-4">Contact Us</h1>
-      <hr>
-    </div>
-    <div class="content-body px-5">
-      <form>
-        <div class="row">
-          <div class="col">
-            <input type="text" class="form-control" placeholder="Full Name" name="full_name" required>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h1 class="section-title display-4 text-center">Contact Us</h1>
+    <hr>
+    <form class="container py-5 px-5">
+      <div class="form-group">
+        <label for="namaLengkap">Nama Lengkap</label>
+        <input type="text" class="form-control" id="namaLengkap" placeholder="Masukkan nama lengkap anda" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Masukkan email anda" />
+      </div>
+      <div class="form-group">
+        <label for="noTelepon">No Telepon</label>
+        <input type="tel" class="form-control" id="noTelepon" placeholder="Masukkan no telepon anda" />
+      </div>
+      <div class="form-group">
+        <label>Jenis Kelamin</label>
+        <div class="inline-radio-button">
+          <div class="custom-control custom-radio">
+            <input checked type="radio" id="radioLaki" name="jenisKelamin" class="custom-control-input" value="laki-laki" />
+            <span class="custom-control-label" for="radioLaki">Laki-laki</span>
           </div>
-          <div class="col">
-            <input type="email" class="form-control" placeholder="Email" name="email" required>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="radioPerempuan" name="jenisKelamin" class="custom-control-input" value="perempuan" />
+            <span class="custom-control-label" for="radioPerempuan">Perempuan</span>
           </div>
         </div>
-        <div class="row mt-3">
-          <div class="col">
-            <input type="text" class="form-control" placeholder="Phone" name="phone" pattern="[0-9]{10,12}" required>
-          </div>
-          <div class="col">
-            <div class="form-group">
-              <select id="inputState" class="form-control" name="subject">
-                <option selected>----- Subject -----</option>
-                <option value="reservation">Reservation</option>
-                <option value="bussiness">Bussiness</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="Message" name="message" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-dark btn-lg">Submit</button>
-      </form>
-    </div>
+      </div>
+      <div class="form-group">
+        <label for="subjek">Subjek</label>
+        <select class="form-control" id="subjek">
+          <option value="">Pilih subjek</option>
+          <option value="pertanyaan">Pertanyaan</option>
+          <option value="saran">Saran</option>
+          <option value="keluhan">Keluhan</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="pesan">Pesan</label>
+        <textarea class="form-control" id="pesan" rows="4"></textarea>
+      </div>
+      <div class="button-group">
+        <button type="submit" class="btn button-reset" id="kirimButton">
+          Reset
+        </button>
+        <button type="submit" class="btn button-submit" id="kirimButton">
+          Kirim
+        </button>
+      </div>
+    </form>
   </section>
 
   <footer>
-    <div class="container">
-      <h3><?php echo getValue('nama_umkm') ?></h3>
-      <div class="row mt-3 align-items-center justify-content-between">
-        <div class="col-lg-9">
-          <p><?php echo getValue('about_umkm') ?></p>
+    <div class="container pt-5 pb-3">
+      <div class="row">
+        <div class="col-lg-9 col-md-6 col-sm-12">
+          <div class="heading">
+            <h3><?php echo getValue('nama_umkm') ?></h3>
+          </div>
+          <div class="lead ml-1">
+            <p><?php echo getValue('about_umkm') ?></p>
+          </div>
         </div>
-        <div class="col-lg-2">
-          <a class="row" href="#">Home</a>
-          <a class="row" href="#menu">Menu</a>
-          <a class="row" href="#order">Order</a>
-          <a class="row" href="#contact">Contact Us</a>
-          <div class="row justify-content-around mt-3">
-            <a href="<?php echo getValue('instagram') ?>"><img src="assets/images/contact-ig.png" alt="" width="40px"></a>
-            <a href="<?php echo getValue('whatsapp') ?>"><img src="assets/images/contact-whatsapp.png" alt="" width="40px"></a>
-            <a href="<?php echo getValue('gmail') ?>"><img src="assets/images/contact-gmail.png" alt="" width="40px"></a>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+          <h3>Our Social Media</h3>
+          <?php
+          include_once 'src/php/db.php';
+
+          $query = "SELECT * FROM settings WHERE name IN ('whatsapp', 'facebook', 'instagram', 'twitter', 'envelope', 'linkedin')";
+          $result = mysqli_query($conn, $query);
+
+          //jika terdapat data yang dipilih
+          if (mysqli_num_rows($result) > 0) {
+            //tampilkan sosial media perusahaan
+            while ($row = mysqli_fetch_assoc($result)) {
+              echo "<div class='social-media-group'>";
+              echo "<i class='fa fa-" . $row['name'] . "' aria-hidden='true'></i>";
+              echo "<a href='" . getValue($row['name'] . '_profile') . "'>" . $row['value'] . "</a>";
+              echo "</div>";
+            }
+          }
+          ?>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="row">
+          <div class="col-md-12 text-center mt-4">
+            <small style="display: inline">
+              &copy; 2023 Company Name. All rights reserved.
+            </small>
           </div>
         </div>
       </div>
@@ -210,7 +251,7 @@ require_once 'db.php';
 
 
 
-  <script src="assets/javascript/script.js"></script>
+  <script src="src/javascript/script.js"></script>
 
   <!-- Optional JavaScript; choose one of the two! -->
 
