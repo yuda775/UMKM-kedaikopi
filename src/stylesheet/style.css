@@ -1,9 +1,7 @@
 html {    
     scroll-behavior: smooth;
 }
-body{
-    background-color: #FFEBB7;
-}
+
 .nav-color {
     background-color: #3c3c3cfa;    
 }
@@ -41,16 +39,13 @@ body{
     border-radius: 10px;
     text-shadow: none;
     color: white;
-
+    
 }
 
-.jumbotron-fluid {
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.463),
-            rgba(34, 44, 44, 0.45)),
-        fixed;
+.jumbotron-fluid {    
     background-size: cover;
-    height: 700px;
+    height: 100vh;
+    object-fit: cover;
 }
 
 .jumbotron h1 {
@@ -58,35 +53,20 @@ body{
         font-family: 'Finger Paint', cursive;
     color: #FFEBB7;
     padding-top: 100px;
-    margin-bottom: 80px;
+    margin-bottom: 180px;    
 }
 
-.jumbotron a {
+
+.jumbotron p, .jumbotron a {
     font-family: 'Elsie Swash Caps', cursive;
         font-family: 'Finger Paint', cursive;
     color: white;
     font-size: 25px;
     font-weight: bold;
-}
-
-.panel {
-    margin: auto;
-    width: 60%;
-    padding: 15px 0px;
-    margin-top: -120px;
-    background: white;
-        box-shadow: 0px 2px 30px 13px rgba(0, 0, 0, 0.25);
-        border-radius: 10px;    
-}
-
+} 
 
 .list-panel img {
     width: 40%;
-}
-
-.panel p {
-    color: #FF6E31;
-    font-weight: 700;
 }
 
 section {
@@ -135,15 +115,13 @@ hr {
     padding-top: 100px;
 }
 
-
 /* Contact */
 form {
     border: gray 1px ridge;
     border-radius: 5px;
-    box-shadow: 8px 10px #8B5A2B;
+    box-shadow: 25px 25px #AD8E70;
     background-color: white;
 }
-
 
 
 label {
@@ -200,15 +178,24 @@ form span {
     font-size: 30px;
 }
 
-.social-media-group i {
+.social-media-group i, .information-group i  {
     text-align: center;
     width: 50px;
     margin: 5px 0;
+    font-size: 20px;
+}
+
+.information-group span {
+    
 }
 
 footer {        
     background-color: #3C3C3C;
     color: #AD8E70;
+}
+
+.footer-content {
+    margin: 0 auto;
 }
 
 footer h3 {
@@ -223,8 +210,8 @@ footer p {
     margin-left: 1px;
 }
 
-footer a {
-    font-weight: bold;
+footer a {    
+    display: block;
     color: #AD8E70;
     font-size: 18px;
 }

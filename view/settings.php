@@ -37,20 +37,6 @@ require_once '../src/php/db.php';
         </div>
       </div>
 
-      <div class="panel">
-        <h4 class="mt-2">Panel</h4>
-        <div class="row panel mt-1">
-          <div class="col-md-4">
-            <input type="text" class="form-control" name="panel_1" placeholder="Panel 1" value="<?php echo getValue('panel_1') ?>">
-          </div>
-          <div class="col-md-4">
-            <input type="text" class="form-control" name="panel_2" placeholder="Panel 2" value="<?php echo getValue('panel_2') ?>">
-          </div>
-          <div class="col-md-4">
-            <input type="text" class="form-control" name="panel_3" placeholder="Panel 3" value="<?php echo getValue('panel_3') ?>">
-          </div>
-        </div>
-      </div>
 
       <div class="images">
         <div class="fluid-images">
@@ -58,7 +44,7 @@ require_once '../src/php/db.php';
           <div class="row">
             <div class="col">
               <div class="custom-file mt-1">
-                <input type="file" class="custom-file-input" id="jumbotron_image" name="jumbotron_image" accept=".jpg,.jpeg,.png">
+                <input type="file" class="custom-file-input" id="jumbotron_image" name="jumbotron_image" value="<?php echo getValue('jumbotron_image') ?>" accept=".jpg,.jpeg,.png">
                 <label class="custom-file-label" for="jumbotron_image">Jumbotron Image</label>
               </div>
             </div>
@@ -69,6 +55,9 @@ require_once '../src/php/db.php';
               </div>
             </div>
           </div>
+          <div class="row">
+
+          </div>
         </div>
       </div>
 
@@ -78,6 +67,22 @@ require_once '../src/php/db.php';
           <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="about_umkm" placeholder="About"><?php echo getValue('about_umkm') ?></textarea>
         </div>
       </div>
+
+      <div class="panel">
+        <h4 class="mt-2">Informasi</h4>
+        <div class="row panel mt-1">
+          <div class="col-md-4">
+            <input type="text" class="form-control" name="lokasi" placeholder="Lokasi" value="<?php echo getValue('lokasi') ?>">
+          </div>
+          <div class="col-md-4">
+            <input type="text" class="form-control" name="lokasi_link" placeholder="Link lokasi" value="<?php echo getValue('lokasi_link') ?>">
+          </div>
+          <div class="col-md-4">
+            <input type="text" class="form-control" name="jam_buka" placeholder="Jam buka" value="<?php echo getValue('jam_buka') ?>">
+          </div>
+        </div>
+      </div>
+
 
       <div class="social-media">
         <h4 class="mt-4">Social Media</h4>

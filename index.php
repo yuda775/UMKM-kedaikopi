@@ -59,27 +59,29 @@ require_once 'src/php/db.php';
   </nav>
 
   <!-- jumbotron -->
-  <div class="jumbotron jumbotron-fluid" style="background-image: url('<?php echo 'assets/images/jumbotron/' . getValue('jumbotron_image'); ?>');">
+  <div class="jumbotron jumbotron-fluid bg-dark " style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('assets/images/jumbotron/kopi.jpg'); background-size: cover;">
     <div class="container">
-      <h1 class="display-2"><?php echo getValue('tagline_umkm') ?></h1>
+      <div class="row justify-content-center align-items-center">
+        <div class="col-md-8 text-center">
+          <h1 class="display-3">Selamat Datang di Restoran XYZ</h1>
+          <p class="lead pt-5">Nikmati hidangan lezat kami dengan bahan-bahan berkualitas tinggi dan sajian yang menggoda selera.</p>
+          <a href="#menu" class="btn btn-outline-light btn-lg mt-4">Lihat Menu Kami</a>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- panel -->
-  <div class="panel row justify-content-between align-items-center">
-    <div class="col-lg-4 text-center list-panel">
-      <img src="assets/images/icon-calendar.png" alt="">
-      <p><?php echo getValue('panel_1') ?></p>
+
+
+  <!-- Maps -->
+  <section class="location">
+    <h1 class="section-title display-4 text-center">Location</h1>
+    <hr>
+    <div class="container embed-responsive embed-responsive-21by9">
+      <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3471.273696166021!2d-122.16962518489655!3d37.42318617983228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fbb6f139b7a33%3A0x7fddc9791c4d4f75!2sGolden%20Gate%20Bridge!5e0!3m2!1sen!2sus!4v1620050861213!5m2!1sen!2sus" allowfullscreen=""></iframe>
     </div>
-    <div class="col-lg-4 text-center list-panel">
-      <img src="assets/images/icon-price.png" alt="">
-      <p><?php echo getValue('panel_2') ?></p>
-    </div>
-    <div class="col-lg-4 text-center list-panel">
-      <img src="assets/images/icon-map.png" alt="">
-      <p><?php echo getValue('panel_3') ?></p>
-    </div>
-  </div>
+  </section>
+
 
   <!-- Menu -->
   <section id="menu" class="container text-center">
@@ -128,23 +130,25 @@ require_once 'src/php/db.php';
   </section>
 
   <!-- Order -->
-  <section id="order" class="container text-center">
-    <div class="content-header">
-      <h1 class="section-title display-4">You can order by</h1>
-      <hr>
-    </div>
-    <div class="row align-items-center">
-      <div class="col-lg-4">
-        <img src="assets/images/gofud.png" alt="" width="80%">
+  <section id="order">
+    <div class="container text-center">
+      <div class="content-header">
+        <h1 class="section-title display-4">You can order by</h1>
+        <hr>
       </div>
-      <div class="col-lg-4">
-        <img src="assets/images/shopeefood.png.png" alt="" width="80%">
+      <div class="row align-items-center">
+        <div class="col-lg-4">
+          <img src="assets/images/gofud.png" alt="" width="80%">
+        </div>
+        <div class="col-lg-4">
+          <img src="assets/images/shopeefood.png.png" alt="" width="80%">
+        </div>
+        <div class="col-lg-4">
+          <img src="assets/images/grabfood.png" alt="" width="80%">
+        </div>
       </div>
-      <div class="col-lg-4">
-        <img src="assets/images/grabfood.png" alt="" width="80%">
-      </div>
-    </div>
   </section>
+  </div>
 
 
   <!-- Contact -->
@@ -177,7 +181,7 @@ require_once 'src/php/db.php';
         <label for="pesan">Pesan</label>
         <textarea class="form-control" name="pesan" id="pesan" rows="4" required></textarea>
       </div>
-      <div class="button-group">
+      <div class="button-group mt-5">
         <button type="submit" class="btn button-reset" id="kirimButton">
           Reset
         </button>
@@ -188,49 +192,61 @@ require_once 'src/php/db.php';
     </form>
   </section>
 
-  <footer>
-    <div class="container pt-5 pb-3">
-      <div class="row">
-        <div class="col-lg-9 col-md-6 col-sm-12">
-          <div class="heading">
-            <h3><?php echo getValue('nama_umkm') ?></h3>
-          </div>
-          <div class="lead ml-1">
-            <p><?php echo getValue('about_umkm') ?></p>
-          </div>
+
+  <footer class="pt-5 pb-3 px-5">
+    <div class="row footer-content">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="heading">
+          <h3><?php echo getValue('nama_umkm') ?></h3>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-12">
-          <h3>Our Social Media</h3>
-          <?php
-          include_once 'src/php/db.php';
+        <div class="lead ml-1">
+          <p><?php echo getValue('about_umkm') ?></p>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6 col-sm-12">
+        <h3>Our Social Media</h3>
+        <?php
+        include_once 'src/php/db.php';
 
-          $query = "SELECT * FROM settings WHERE name IN ('whatsapp', 'facebook', 'instagram', 'twitter', 'envelope', 'linkedin')";
-          $result = mysqli_query($conn, $query);
+        $query = "SELECT * FROM settings WHERE name IN ('whatsapp', 'facebook', 'instagram', 'twitter', 'envelope', 'linkedin')";
+        $result = mysqli_query($conn, $query);
 
-          //jika terdapat data yang dipilih
-          if (mysqli_num_rows($result) > 0) {
-            //tampilkan sosial media perusahaan
-            while ($row = mysqli_fetch_assoc($result)) {
-              if (!empty($row['value'])) {
-                echo "<div class='social-media-group'>";
-                echo "<i class='fa fa-" . $row['name'] . "' aria-hidden='true'></i>";
-                echo "<a href='" . getValue($row['name'] . '_profile') . "'>" . $row['value'] . "</a>";
-                echo "</div>";
-              }
+        //jika terdapat data yang dipilih
+        if (mysqli_num_rows($result) > 0) {
+          //tampilkan sosial media perusahaan
+          while ($row = mysqli_fetch_assoc($result)) {
+            if (!empty($row['value'])) {
+              echo "<div class='social-media-group'>";
+              echo "<i class='fa fa-" . $row['name'] . "' aria-hidden='true'></i>";
+              echo "<a href='" . getValue($row['name'] . '_profile') . "'>" . $row['value'] . "</a>";
+              echo "</div>";
             }
           }
-          ?>
-        </div>
+        }
+        ?>
       </div>
-      <div class="footer-bottom">
-        <div class="row">
-          <div class="col-md-12 text-center mt-4">
-            <small style="display: inline">
-              &copy; 2023 Company Name. All rights reserved.
-            </small>
-          </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <h3>Other Information</h3>
+        <div class="information-group">
+          <i class="fa fa-map-marker"></i>
+          <span><?php echo getValue('lokasi') ?></span>
         </div>
+        <div class="information-group">
+          <i class="fa fa-map" aria-hidden="true"></i>
+          <span><?php echo getValue('lokasi_link') ?></span>
+        </div>
+        <div class="information-group">
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+          <span><?php echo getValue('jam_buka') ?></span>
+        </div>
+
+
       </div>
+    </div>
+    <div class="footer-bottom text-center mt-5">
+      <small class="">
+        &copy; 2023 Company Name. All rights reserved.
+      </small>
     </div>
   </footer>
 
