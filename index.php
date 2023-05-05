@@ -59,12 +59,11 @@ require_once 'src/php/db.php';
   </nav>
 
   <!-- jumbotron -->
-  <div class="jumbotron jumbotron-fluid bg-dark " style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('assets/images/jumbotron/kopi.jpg'); background-size: cover;">
+  <div class="jumbotron jumbotron-fluid bg-dark " style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('assets/images/jumbotron/<?php echo getValue('jumbotron_image') ?>'); background-size: cover;">
     <div class="container">
       <div class="row justify-content-center align-items-center">
         <div class="col-md-8 text-center">
-          <h1 class="display-3">Selamat Datang di Restoran XYZ</h1>
-          <p class="lead pt-5">Nikmati hidangan lezat kami dengan bahan-bahan berkualitas tinggi dan sajian yang menggoda selera.</p>
+          <h1 class="display-3"><?php echo getValue('tagline_umkm') ?></h1>
           <a href="#menu" class="btn btn-outline-light btn-lg mt-4">Lihat Menu Kami</a>
         </div>
       </div>
@@ -78,7 +77,7 @@ require_once 'src/php/db.php';
     <h1 class="section-title display-4 text-center">Location</h1>
     <hr>
     <div class="container embed-responsive embed-responsive-21by9">
-      <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3471.273696166021!2d-122.16962518489655!3d37.42318617983228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fbb6f139b7a33%3A0x7fddc9791c4d4f75!2sGolden%20Gate%20Bridge!5e0!3m2!1sen!2sus!4v1620050861213!5m2!1sen!2sus" allowfullscreen=""></iframe>
+      <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3471.273696166021!2d-122.16962518489655!3d37.42318617983228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fbb6f139b7a33%3A0x7fddc9791c4d4f75!2sGolden%20Gate%20Bridge!5e0!3m2!1sen!2sus!4v1620050861213!5m2!1sen!2sus" allowfullscreen="on"></iframe>
     </div>
   </section>
 
@@ -147,8 +146,8 @@ require_once 'src/php/db.php';
           <img src="assets/images/grabfood.png" alt="" width="80%">
         </div>
       </div>
+    </div>
   </section>
-  </div>
 
 
   <!-- Contact -->
@@ -162,15 +161,15 @@ require_once 'src/php/db.php';
       </div>
       <div class="form-group">
         <label for="noTelepon">No Telepon</label>
-        <input type="tel" class="form-control" name="no-telepon" id="noTelepon" placeholder="Masukkan no telepon anda" required autocomplete="off" />
+        <input type="tel" class="form-control" name="no-telepon" id="noTelepon" placeholder="Masukkan no telepon anda" required autocomplete="off" maxlength="13" />
       </div>
-      <div class="form-group">
+      <div class=" form-group">
         <label for="email">Email</label>
         <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan email anda" required autocomplete="off" />
       </div>
       <div class="form-group">
         <label for="subjek">Subjek</label>
-        <select class="form-control" id="subjek" name="subject" required>
+        <select class="form-control" id="subjek" name="subjek" required>
           <option value="">Pilih subjek</option>
           <option value="pertanyaan">Pertanyaan</option>
           <option value="saran">Saran</option>
@@ -195,7 +194,7 @@ require_once 'src/php/db.php';
 
   <footer class="pt-5 pb-3 px-5">
     <div class="row footer-content">
-      <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="col-lg-5 col-md-12 col-sm-12">
         <div class="heading">
           <h3><?php echo getValue('nama_umkm') ?></h3>
         </div>
@@ -203,7 +202,7 @@ require_once 'src/php/db.php';
           <p><?php echo getValue('about_umkm') ?></p>
         </div>
       </div>
-      <div class="col-lg-2 col-md-6 col-sm-12">
+      <div class="col-lg-3 col-md-12 col-sm-12 pb-3">
         <h3>Our Social Media</h3>
         <?php
         include_once 'src/php/db.php';
@@ -225,7 +224,7 @@ require_once 'src/php/db.php';
         }
         ?>
       </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="col-lg-4 col-md-12 col-sm-12">
         <h3>Other Information</h3>
         <div class="information-group">
           <i class="fa fa-map-marker"></i>
@@ -239,8 +238,6 @@ require_once 'src/php/db.php';
           <i class="fa fa-clock-o" aria-hidden="true"></i>
           <span><?php echo getValue('jam_buka') ?></span>
         </div>
-
-
       </div>
     </div>
     <div class="footer-bottom text-center mt-5">

@@ -37,7 +37,6 @@ require_once '../src/php/db.php';
         </div>
       </div>
 
-
       <div class="images">
         <div class="fluid-images">
           <h4 class="mt-4">Images</h4>

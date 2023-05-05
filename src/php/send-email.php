@@ -1,15 +1,23 @@
 <?php
 
+include_once 'db.php';
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $nama_lengkap = $_POST["nama-lengkap"];
 $email = $_POST["email"];
 $no_telepon = $_POST["no-telepon"];
+$subjek = $_POST["subjek"];
 $pesan = $_POST["pesan"];
-$subject = $_POST["subject"];
-$to = "renachoerunisa5@gmail.com";
-$subject_line = "Pesan dari $nama_lengkap ($email) - $subject ";
-$body = "No. HP : $no_telepon \n\n Pesan:\n\n$pesan";
-if (mail($to, $subject_line, $body)) {
-  echo "Pesan telah terkirim.";
+print_r($_POST);
+
+$query = "INSERT INTO send_mail (nama_lengkap, email, no_telepon, subjek, pesan)
+VALUES ('$nama_lengkap', '$email', '$no_telepon', '$subjek', '$pesan')";
+
+if (mysqli_query($conn, $query)) {
+  header('Location: ../../index.php');
 } else {
-  echo "Gagal mengirim pesan.";
+  echo "ERROR: Could not able to execute $query. " . mysqli_error($conn);
 }
