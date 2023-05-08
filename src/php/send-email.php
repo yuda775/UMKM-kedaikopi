@@ -13,8 +13,8 @@ $subjek = $_POST["subjek"];
 $pesan = $_POST["pesan"];
 print_r($_POST);
 
-$query = "INSERT INTO send_mail (nama_lengkap, email, no_telepon, subjek, pesan)
-VALUES ('$nama_lengkap', '$email', '$no_telepon', '$subjek', '$pesan')";
+$query = "INSERT INTO send_mail (nama_lengkap, email, no_telepon, subjek, pesan, read_status)
+VALUES ('$nama_lengkap', '$email', '$no_telepon', '$subjek', '$pesan', 0)";
 
 if (mysqli_query($conn, $query)) {
   header('Location: ../../index.php');

@@ -91,36 +91,36 @@ require_once 'src/php/db.php';
     </div>
     <div class="content-body row mt-5">
       <div class="col-lg-4">
-        <div class="card" style="background-image: url(assets/images/card-coffe.jpg);">
-          <h3>All kinds of <br> coffe drinks</h3>
+        <div class="card" style="background-image: url('assets/images/rekomendasi/<?php echo getValue('img_rekomendasi_1') ?>');">
+          <h3><?php echo getValue('nama_rekomendasi_1') ?></h3>
         </div>
       </div>
       <div class="col-lg-4">
-        <div class="card" style="background-image: url(assets/images/card-pasta.jpg);">
-          <h3>Pasta</h3>
+        <div class="card" style="background-image: url('assets/images/rekomendasi/<?php echo getValue('img_rekomendasi_2') ?>');">
+          <h3><?php echo getValue('nama_rekomendasi_2') ?></h3>
         </div>
       </div>
       <div class="col-lg-4">
-        <div class="card" style="background-image: url(assets/images/card-bread.jpg);">
-          <h3>Bread</h3>
+        <div class="card" style="background-image: url('assets/images/rekomendasi/<?php echo getValue('img_rekomendasi_3') ?>');">
+          <h3><?php echo getValue('nama_rekomendasi_3') ?></h3>
         </div>
       </div>
     </div>
     <div class="content-body row mt-3">
       <div class="col-lg-4">
-        <div class="card" style="background-image: url(assets/images/card-pastry.jpg);">
-          <h3>Pastry</h3>
+        <div class="card" style="background-image: url('assets/images/rekomendasi/<?php echo getValue('img_rekomendasi_4') ?>');">
+          <h3><?php echo getValue('nama_rekomendasi_4') ?></h3>
         </div>
       </div>
       <div class="col-lg-4">
-        <div class="card" style="background-image: url(assets/images/card-pie.jpg);">
-          <h3>Pie</h3>
+        <div class="card" style="background-image: url('assets/images/rekomendasi/<?php echo getValue('img_rekomendasi_5') ?>');">
+          <h3><?php echo getValue('nama_rekomendasi_5') ?></h3>
         </div>
       </div>
       <div class="col-lg-4">
         <a href="view/menu.php">
-          <div class="card" style="background-image: url(assets/images/card-next.jpg);">
-            <h4>Click here <br> to find more menu</h4>
+          <div class="card" style="background-image: url('assets/images/rekomendasi/<?php echo getValue('img_rekomendasi_6') ?>');">
+            <h3><?php echo getValue('nama_rekomendasi_6') ?></h3>
             <img class="mx-auto mt-3" src="assets/icons/🦆 icon _arrow circle right_.png" alt="" width="40%">
         </a>
       </div>
@@ -174,6 +174,7 @@ require_once 'src/php/db.php';
           <option value="pertanyaan">Pertanyaan</option>
           <option value="saran">Saran</option>
           <option value="keluhan">Keluhan</option>
+          <option value="lainnya">Lainnya</option>
         </select>
       </div>
       <div class="form-group">
