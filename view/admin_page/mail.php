@@ -16,6 +16,7 @@
       <div class="navbar-nav">
         <a class="nav-item nav-link active" href="mail.php">Email<span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link" href="settings.php">Settings</a>
+        <a class="nav-item nav-link" href="products.php">Products</a>
       </div>
     </div>
   </nav>

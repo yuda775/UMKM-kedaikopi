@@ -1,3 +1,5 @@
+<?php include_once "../src/php/db.php"; ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -28,7 +30,7 @@
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar fixed-top navbar-expand-lg">
+  <nav class="navbar fixed-top navbar-expand-lg ">
     <div class="container">
       <a class="navbar-brand" href="#">Daikohi</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,9 +56,14 @@
   </nav>
 
   <!-- jumbotron -->
-  <div class="jumbotron jumbotron-fluid">
+  <div class="jumbotron jumbotron-fluid bg-dark " style="background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../assets/images/jumbotron/<?php echo getValue('jumbotron_image') ?>'); background-size: cover;">
+    <div class="container">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-md-8 text-center">
+        </div>
+      </div>
+    </div>
   </div>
-
   <!-- Menu panel -->
   <div class="menu-panel container">
     <div class="menu-header">
@@ -64,93 +71,107 @@
       <hr>
     </div>
     <div class="menu-body">
-      <div class="category">
-        <h2>Coffe</h2>
-        <ul>
-          <li>
-            <img src="../assets/images/card-coffe.jpg" alt="">
-            <p>Americano</p>
-          </li>
-          <li>
-            <img src="../assets/images/card-coffe.jpg" alt="">
-            <p>Latte</p>
-          </li>
-          <li>
-            <img src="../assets/images/card-coffe.jpg" alt="">
-            <p>Cappucino</p>
-          </li>
-          <li>
-            <img src="../assets/images/card-coffe.jpg" alt="">
-            <p>Espresso</p>
-          </li>
-        </ul>
-      </div>
-      <div class="category">
-        <h2>Non Coffe</h2>
-        <ul>
-          <li>
-            <img src="../assets/images/card-smothies.jpg" alt="">
-            <p>Smooties</p>
-          </li>
-          <li>
-            <img src="../assets/images/card-smothies.jpg" alt="">
-            <p>Juice</p>
-          </li>
-          <li>
-            <img src="../assets/images/card-smothies.jpg" alt="">
-            <p>Boba</p>
-          </li>
-        </ul>
-      </div>
-      <div class="category">
-        <h2>Food</h2>
-        <ul>
-          <li>
-            <img src="../assets/images/card-toast.jpg" alt="">
-            <p>Bread</p>
-          </li>
-          <li>
-            <img src="../assets/images/card-toast.jpg" alt="">
-            <p>Pasta</p>
-          </li>
-          <li>
-            <img src="../assets/images/card-toast.jpg" alt="">
-            <p>Toast</p>
-          </li>
-          <li>
-            <img src="../assets/images/card-toast.jpg" alt="">
-            <p>Pie Cake</p>
-          </li>
-        </ul>
-      </div>
+      <?php
+      include_once "../src/php/db.php";
+      // Query untuk mengambil data produk
+      $sql = "SELECT produk.id, produk.nama_produk, kategori_produk.kategori, produk.gambar_produk FROM produk INNER JOIN kategori_produk ON produk.id_kategori = kategori_produk.id ORDER BY kategori_produk.kategori DESC;";
+      $result = mysqli_query($conn, $sql);
+
+      // Memeriksa apakah terdapat hasil query
+      if (mysqli_num_rows($result) > 0) {
+        // Inisialisasi variabel kategori
+        $kategori = '';
+        // Menampilkan data produk
+        while ($row = mysqli_fetch_assoc($result)) {
+          // Jika kategori berubah, tampilkan judul kategori baru
+          if ($row['kategori'] != $kategori) {
+            // Menutup tag <ul> pada kategori sebelumnya
+            if (!empty($kategori)) {
+              echo "</ul>";
+              echo "</div>";
+            }
+            // Membuka tag <div> baru untuk kategori baru
+            echo "<div class='category'>";
+            echo "<h2>" . $row['kategori'] . "</h2>";
+            echo "<ul>";
+            // Menyimpan kategori saat ini
+            $kategori = $row['kategori'];
+          }
+          echo "<li>";
+          echo "<img src='../assets/images/products/" . $row['gambar_produk'] . "' alt=''>";
+          echo "<p>" . $row['nama_produk'] . "</p>";
+          echo "</li>";
+        }
+        // Menutup tag </ul> dan </div> pada kategori terakhir
+        echo "</ul>";
+        echo "</div>";
+      } else {
+        echo "0 results";
+      }
+
+      // Menutup koneksi dengan database
+      mysqli_close($conn);
+      ?>
     </div>
   </div>
 
-  <!-- footer -->
-  <footer>
-    <div class="container">
-      <h3>Daikohi</h3>
-      <div class="row mt-3 align-items-center justify-content-between">
-        <div class="col-lg-9">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis distinctio, quae quaerat deserunt nesciunt incidunt maxime ea dolorem accusantium nostrum, debitis aliquid, fugit est ipsa perspiciatis! Qui magnam nihil et iusto magni, labore ab ipsam laudantium, esse quasi alias sequi unde ipsum cumque debitis aspernatur. Provident a, dignissimos quod voluptatibus nemo sequi consequuntur dolore natus suscipit sit eius cupiditate necessitatibus quae debitis, reprehenderit vel, ipsum id placeat quia aperiam labore odit! Ipsam iste repellendus dolorum non eum officia illo optio accusantium rem itaque ex esse voluptas laudantium voluptate laboriosam aliquam cupiditate, perspiciatis maiores nostrum consequuntur aliquid. Animi cumque commodi consectetur!</p>
+  <footer class="pt-5 pb-3 px-5">
+    <div class="row footer-content">
+      <div class="col-lg-5 col-md-12 col-sm-12">
+        <div class="heading">
+          <h3><?php echo getValue('nama_umkm') ?></h3>
         </div>
-        <div class="col-lg-2">
-          <a class="row" href="#">Home</a>
-          <a class="row" href="#menu">Menu</a>
-          <a class="row" href="#order">Order</a>
-          <a class="row" href="#contact">Contact Us</a>
-          <div class="row justify-content-between mt-3">
-            <img src="assets/images/contact-ig.png" alt="" width="40px">
-            <img src="assets/images/contact-whatsapp.png" alt="" width="40px">
-            <img src="assets/images/contact-gmail.png" alt="" width="40px">
-          </div>
+        <div class="lead ml-1">
+          <p><?php echo getValue('about_umkm') ?></p>
         </div>
       </div>
+      <div class="col-lg-3 col-md-12 col-sm-12 pb-3">
+        <h3>Our Social Media</h3>
+        <?php
+        $query = "SELECT * FROM settings WHERE name IN ('whatsapp', 'facebook', 'instagram', 'twitter', 'envelope', 'linkedin')";
+        $result = mysqli_query($conn, $query);
+
+        print_r(mysqli_fetch_assoc($result));
+
+        //jika terdapat data yang dipilih
+        if (mysqli_num_rows($result) > 0) {
+          //tampilkan sosial media perusahaan
+          while ($row = mysqli_fetch_assoc($result)) {
+            if (!empty($row['value'])) {
+              echo "<div class='social-media-group'>";
+              echo "<i class='fa fa-" . $row['name'] . "' aria-hidden='true'></i>";
+              echo "<a href='" . getValue($row['name'] . '_profile') . "'>" . $row['value'] . "</a>";
+              echo "</div>";
+            }
+          }
+        }
+        ?>
+      </div>
+      <div class="col-lg-4 col-md-12 col-sm-12">
+        <h3>Other Information</h3>
+        <div class="information-group">
+          <i class="fa fa-map-marker"></i>
+          <span><?php echo getValue('lokasi') ?></span>
+        </div>
+        <div class="information-group">
+          <i class="fa fa-map" aria-hidden="true"></i>
+          <span><?php echo getValue('lokasi_link') ?></span>
+        </div>
+        <div class="information-group">
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+          <span><?php echo getValue('jam_buka') ?></span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom text-center mt-5">
+      <small class="">
+        &copy; 2023 Company Name. All rights reserved.
+      </small>
     </div>
   </footer>
 
 
-  <script src="assets/javascript/script.js"></script>
+  <script src="../src/javascript/script.js"></script>
   <script>
     $(document).ready(function() {
       $(".navbar-item").click(function(e) {
