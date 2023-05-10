@@ -15,12 +15,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+  <!-- my Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&family=Finger+Paint&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&family=Finger+Paint&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&family=Finger+Paint&family=Ubuntu+Mono:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Elsie+Swash+Caps:wght@900&family=Finger+Paint&family=Ubuntu+Mono:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
   <!-- my CSS -->
   <link rel="stylesheet" href="../src/stylesheet/menu.css">
@@ -39,16 +42,16 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto gap-5">
           <li class="nav-item active">
-            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="../index.php">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html#menu">Menu</a>
+            <a class="nav-link" href="../index.php#menu">Menu</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html#order">Order</a>
+            <a class="nav-link" href="../index.php#order">Order</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link button" href="index.html#contact">Contact Us</a>
+            <a class="nav-link button" href="../index.php#contact">Contact Us</a>
           </li>
         </ul>
       </div>
@@ -72,7 +75,6 @@
     </div>
     <div class="menu-body">
       <?php
-      include_once "../src/php/db.php";
       // Query untuk mengambil data produk
       $sql = "SELECT produk.id, produk.nama_produk, kategori_produk.kategori, produk.gambar_produk FROM produk INNER JOIN kategori_produk ON produk.id_kategori = kategori_produk.id ORDER BY kategori_produk.kategori DESC;";
       $result = mysqli_query($conn, $sql);
@@ -108,9 +110,6 @@
       } else {
         echo "0 results";
       }
-
-      // Menutup koneksi dengan database
-      mysqli_close($conn);
       ?>
     </div>
   </div>
@@ -128,10 +127,10 @@
       <div class="col-lg-3 col-md-12 col-sm-12 pb-3">
         <h3>Our Social Media</h3>
         <?php
+        include_once 'src/php/db.php';
+
         $query = "SELECT * FROM settings WHERE name IN ('whatsapp', 'facebook', 'instagram', 'twitter', 'envelope', 'linkedin')";
         $result = mysqli_query($conn, $query);
-
-        print_r(mysqli_fetch_assoc($result));
 
         //jika terdapat data yang dipilih
         if (mysqli_num_rows($result) > 0) {
@@ -171,14 +170,18 @@
   </footer>
 
 
-  <script src="../src/javascript/script.js"></script>
+
+  <!-- <script src="../src/javascript/script.js"></script> -->
   <script>
-    $(document).ready(function() {
-      $(".navbar-item").click(function(e) {
-        $("navbar-item").removeClass("active");
-        $(this).addClass("active");
-      });
-    });
+    const navbar = document.getElementsByTagName('nav')[0];
+    window.addEventListener('scroll', function() {
+      console.log(window.scrollY);
+      if (window.scrollY > 30) {
+        navbar.classList.add('nav-color');
+      } else {
+        navbar.classList.remove('nav-color');
+      }
+    })
   </script>
 
 

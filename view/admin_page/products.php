@@ -1,4 +1,13 @@
 <?php
+
+session_start();
+
+// Jika sesi username belum di-set, redirect ke halaman login
+if (!isset($_SESSION['username'])) {
+  header("Location: login.php");
+  exit();
+}
+
 include_once "../../src/php/db.php";
 ?>
 
@@ -19,14 +28,13 @@ include_once "../../src/php/db.php";
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-
       <a class="navbar-brand" href="#">Admin Page</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" href="mail.php">Email</a>
+          <a class="nav-item nav-link" href="index.php">Email</a>
           <a class="nav-item nav-link" href="settings.php">Settings</a>
           <a class="nav-item nav-link active" href="products.php">Products</a>
         </div>
@@ -38,7 +46,7 @@ include_once "../../src/php/db.php";
   <div class="container bg-light px-5 py-5 mt-5 rounded border">
     <div class="row">
       <div class="col-md-6 offset-md-3">
-        <h1 class="text-center mb-4">Kategori Produk</h1>
+        <h1 class="mb-4 text-center">Kategori Produk</h1>
         <form action="../../src/php/product_action.php" method="post">
           <div class="input-group mb-3">
             <input type="text" class="form-control" name="kategori" placeholder="Kategori baru" aria-label="Tambah Kategori" aria-describedby="button-add" autocomplete="off">
@@ -72,7 +80,7 @@ include_once "../../src/php/db.php";
   <!-- Panel Produk -->
   <div class="container bg-light px-5 py-2 mt-3 mb-5 rounded border">
     <div class="container mt-5">
-      <h1 class="mt-5text-center">Produk</h1>
+      <h1 class="mt-5">Produk</h1>
       <form action="../../src/php/product_action.php" method="post" enctype="multipart/form-data">
         <div class="row border p-4 justify-content-between">
           <div class="col">
@@ -110,7 +118,7 @@ include_once "../../src/php/db.php";
     ?>
 
     <div class="container mt-5">
-      <h1 class="text-center mb-5">Daftar Produk</h1>
+      <h1 class="mb-5">Daftar Produk</h1>
       <table class="table table-striped table-bordered">
         <thead class="thead-dark">
           <tr class="text-center fs-3">

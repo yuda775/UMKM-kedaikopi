@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+// Jika sesi username belum di-set, redirect ke halaman login
+if (!isset($_SESSION['username'])) {
+  header("Location: login.php");
+  exit();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -60,7 +70,7 @@
         mysqli_close($conn);
         ?>
 
-        <a href="mail.php" class="btn btn-secondary btn-sm">Kembali</a>
+        <a href="index.php" class="btn btn-secondary btn-sm">Kembali</a>
       </div>
     </div>
   </div>

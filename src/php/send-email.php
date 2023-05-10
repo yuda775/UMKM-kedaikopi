@@ -1,5 +1,15 @@
 <?php
 
+session_start();
+
+// Jika sesi username belum di-set, redirect ke halaman login
+if (!isset($_SESSION['username'])) {
+  header("Location: login.php");
+  exit();
+}
+
+
+
 include_once 'db.php';
 
 ini_set('display_errors', 1);

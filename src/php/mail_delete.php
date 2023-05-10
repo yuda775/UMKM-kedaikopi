@@ -1,5 +1,17 @@
 <?php
 
+session_start();
+
+// Jika sesi username belum di-set, redirect ke halaman login
+if (!isset($_SESSION['username'])) {
+  header("Location: login.php");
+  exit();
+}
+
+// Halaman yang hanya bisa diakses setelah login
+echo "Selamat datang, " . $_SESSION['username'] . "!";
+
+
 include_once 'db.php';
 
 $id = $_GET['id'];

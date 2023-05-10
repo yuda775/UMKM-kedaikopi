@@ -110,27 +110,53 @@ ul li img:hover {
     font-weight: bold;
 }
 
+.social-media-group {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+}
+
+.social-media-group i,
+.information-group i {
+    text-align: center;
+    width: 50px;
+    margin: 5px 0;
+    font-size: 20px;
+}
+
 footer {
-    padding: 50px;
     background-color: #3C3C3C;
     color: #AD8E70;
+}
 
+.footer-content {
+    margin: 0 auto;
 }
 
 footer h3 {
     font-family: 'Elsie Swash Caps', cursive;
+    color: #e77c24;
 }
 
 footer p {
     border-left: #AD8E70 3px solid;
     padding-left: 10px;
     font-size: 16px;
+    margin-left: 1px;
 }
 
 footer a {
-    font-weight: bold;
+    display: block;
     color: #AD8E70;
     font-size: 18px;
+}
+
+footer a:hover {
+    color: #FFEBB7;
+}
+
+footer small {
+    color: #e77c24;
 }
 
 @media (max-width: 767.98px) {    

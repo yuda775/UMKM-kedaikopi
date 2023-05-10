@@ -1,4 +1,18 @@
 <?php
+
+
+session_start();
+
+// Jika sesi username belum di-set, redirect ke halaman login
+if (!isset($_SESSION['username'])) {
+  header("Location: login.php");
+  exit();
+}
+
+// Halaman yang hanya bisa diakses setelah login
+echo "Selamat datang, " . $_SESSION['username'] . "!";
+
+
 require_once '../../src/php/db.php';
 ?>
 
@@ -21,16 +35,19 @@ require_once '../../src/php/db.php';
 </head>
 
 <body>
+
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Admin Page</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" href="mail.php">Email<span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link active" href="settings.php">Settings</a>
-        <a class="nav-item nav-link" href="products.php">Products</a>
+    <div class="container">
+      <a class="navbar-brand" href="#">Admin Page</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="index.php">Email</a>
+          <a class="nav-item nav-link active" href="settings.php">Settings</a>
+          <a class="nav-item nav-link" href="products.php">Products</a>
+        </div>
       </div>
     </div>
   </nav>
