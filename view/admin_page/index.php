@@ -1,3 +1,16 @@
+<?php
+// pastikan sesi sudah dimulai
+session_start();
+
+// periksa apakah pengguna sudah login
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+  // pengguna belum login, arahkan ke halaman login
+  header('Location: login.php');
+  exit;
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 

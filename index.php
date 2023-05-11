@@ -77,7 +77,7 @@ require_once 'src/php/db.php';
     <h1 class="section-title display-4 text-center">Location</h1>
     <hr>
     <div class="container embed-responsive embed-responsive-21by9">
-      <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3471.273696166021!2d-122.16962518489655!3d37.42318617983228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fbb6f139b7a33%3A0x7fddc9791c4d4f75!2sGolden%20Gate%20Bridge!5e0!3m2!1sen!2sus!4v1620050861213!5m2!1sen!2sus" allowfullscreen="on"></iframe>
+      <iframe width="100%" height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q= <?= getValue('lokasi_link') ?>&t=&z=10&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
     </div>
   </section>
 
@@ -140,7 +140,7 @@ require_once 'src/php/db.php';
           <img src="assets/images/gofud.png" alt="" width="80%">
         </div>
         <div class="col-lg-4">
-          <img src="assets/images/shopeefood.png.png" alt="" width="80%">
+          <img src="assets/images/shopeefood.png" alt="" width="80%">
         </div>
         <div class="col-lg-4">
           <img src="assets/images/grabfood.png" alt="" width="80%">

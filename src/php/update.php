@@ -1,11 +1,4 @@
 <?php
-session_start();
-
-// Jika sesi username belum di-set, redirect ke halaman login
-if (!isset($_SESSION['username'])) {
-      header("Location: login.php");
-      exit();
-}
 
 require_once 'db.php';
 

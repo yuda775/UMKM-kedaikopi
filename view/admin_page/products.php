@@ -1,11 +1,12 @@
 <?php
-
+// pastikan sesi sudah dimulai
 session_start();
 
-// Jika sesi username belum di-set, redirect ke halaman login
-if (!isset($_SESSION['username'])) {
-  header("Location: login.php");
-  exit();
+// periksa apakah pengguna sudah login
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+  // pengguna belum login, arahkan ke halaman login
+  header('Location: login.php');
+  exit;
 }
 
 include_once "../../src/php/db.php";
