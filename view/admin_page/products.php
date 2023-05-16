@@ -139,7 +139,7 @@ include_once "../../src/php/db.php";
               <td><?php echo $row['kategori']; ?></td>
               <td><img src="../../assets/images/products/<?php echo $row['gambar_produk']; ?>" width="100"></td>
               <td class="align-middle">
-                <form action="../../src/php/product_action.php" method="post">
+                <form action="products_edit.php" method="post">
                   <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                   <button type="submit" name="edit_produk" class="btn btn-primary">Edit</button>
                 </form>
