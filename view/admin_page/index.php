@@ -1,5 +1,17 @@
 <?php
+// Pastikan sesi sudah dimulai
+session_start();
+
+// Menyertakan file koneksi ke database
 include_once '../../src/php/db.php';
+
+// Periksa apakah pengguna sudah login
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+  // Pengguna belum login, arahkan ke halaman login
+  header('Location: login.php');
+  exit;
+}
+
 ?>
 
 <!doctype html>
@@ -8,7 +20,7 @@ include_once '../../src/php/db.php';
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bootstrap demo</title>
+  <title>Homepage</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 
@@ -16,7 +28,7 @@ include_once '../../src/php/db.php';
 
   <?php include "components/navbar.php" ?>
 
-  <div class="jumbotron text-center container mt-5">
+  <div class="jumbotron text-center container mt-5 p-5 bg-secondary rounded text-white">
     <h1 class="display-4">Selamat Datang, Admin!</h1>
     <p class="lead">Ini adalah halaman admin <?= getValue('nama_umkm') ?>.</p>
     <hr class="my-4">

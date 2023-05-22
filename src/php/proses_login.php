@@ -1,9 +1,6 @@
 <?php
 // memulai session
-
 session_start();
-
-
 
 // menyertakan file koneksi ke database
 include_once('db.php');
@@ -27,20 +24,23 @@ if (isset($_POST['username'], $_POST['password'])) {
     if ($password == $row['password']) {
 
       // menyimpan data login ke dalam session
-      $_SESSION['logged_in'] = true;
-      $_SESSION['role_id']      = $row['role_id'];
-      $_SESSION['username']  = $username;
+      $_SESSION['logged_in']  = true;
+      $_SESSION['role_id']    = $row['role_id'];
+      $_SESSION['username']   = $username;
 
       // mengarahkan pengguna ke halaman utama atau dashboard
       header('Location: ../../view/admin_page/index.php');
+      exit;
     } else {
       // jika password tidak cocok, menampilkan pesan kesalahan
       header('Location: ../../view/admin_page/login.php');
       echo '<div class="alert alert-danger">' . "Username atau password salah" . '</div>';
+      exit;
     }
   } else {
     // jika username tidak ditemukan, menampilkan pesan kesalahan
     header('Location: ../../view/admin_page/login.php');
     echo '<div class="alert alert-danger">' . "Username atau password salah" . '</div>';
+    exit;
   }
 }

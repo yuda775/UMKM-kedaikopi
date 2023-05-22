@@ -1,8 +1,5 @@
 <?php
 
-
-include_once '../../src/php/db.php';
-
 // Pastikan sesi sudah dimulai
 session_start();
 
@@ -12,6 +9,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   header('Location: login.php');
   exit;
 }
+
+include_once '../../src/php/db.php';
 
 $userRole = $_SESSION['role_id'];
 $getPermission = mysqli_query($conn, "SELECT p.name FROM role_has_permission rp 

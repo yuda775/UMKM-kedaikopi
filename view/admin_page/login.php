@@ -12126,6 +12126,7 @@
                   <input id="password-field" type="password" name="password" class="form-control" autocomplete="off" required>
                   <label class="form-control-placeholder" for="password">Password</label>
                   <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                  <input type="hidden" name="token" value="<?php echo bin2hex(random_bytes(32)); ?>">
                 </div>
                 <div class="form-group">
                   <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
