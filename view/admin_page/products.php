@@ -1,15 +1,39 @@
 <?php
-// pastikan sesi sudah dimulai
+
+
+include_once '../../src/php/db.php';
+
+// Pastikan sesi sudah dimulai
 session_start();
 
-// periksa apakah pengguna sudah login
+// Periksa apakah pengguna sudah login
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-  // pengguna belum login, arahkan ke halaman login
+  // Pengguna belum login, arahkan ke halaman login
   header('Location: login.php');
   exit;
 }
 
-include_once "../../src/php/db.php";
+$userRole = $_SESSION['role_id'];
+$getPermission = mysqli_query($conn, "SELECT p.name FROM role_has_permission rp 
+                                      JOIN permissions p ON rp.permission_id = p.id 
+                                      WHERE rp.role_id = $userRole");
+$hasEmailPermission = false;
+
+while ($row = mysqli_fetch_assoc($getPermission)) {
+  $permissionName = $row['name'];
+  if ($permissionName === 'products') {
+    $hasEmailPermission = true;
+    break;
+  }
+}
+
+if (!$hasEmailPermission) {
+  // Tidak memiliki izin akses email, arahkan ke halaman index.php
+  $_SESSION['error_message'] = "Anda tidak memiliki izin untuk mengakses products.";
+  echo '<div class="alert alert-danger">' . $_SESSION['error_message'] . '</div>';
+  exit;
+}
+
 ?>
 
 <!doctype html>
@@ -27,21 +51,8 @@ include_once "../../src/php/db.php";
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-      <a class="navbar-brand" href="#">Admin Page</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="index.php">Email</a>
-          <a class="nav-item nav-link" href="settings.php">Settings</a>
-          <a class="nav-item nav-link active" href="products.php">Products</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+
+  <?php include "components/navbar.php" ?>
 
   <!-- Panel Kategori -->
   <div class="container bg-light px-5 py-5 mt-5 rounded border">
@@ -113,7 +124,7 @@ include_once "../../src/php/db.php";
 
     <?php
     //query untuk mengambil data produk
-    $query = "SELECT produk.id, produk.nama_produk, kategori_produk.kategori, produk.gambar_produk FROM produk INNER JOIN kategori_produk ON produk.id_kategori = kategori_produk.id;";
+    $query = "SELECT produk.id, produk.nama_produk, kategori_produk.kategori, produk.gambar_produk, produk.created_at, produk.updated_at, produk.updated_by FROM produk INNER JOIN kategori_produk ON produk.id_kategori = kategori_produk.id;";
     $result = mysqli_query($conn, $query);
 
     ?>
@@ -128,6 +139,8 @@ include_once "../../src/php/db.php";
             <th scope="col">Kategori</th>
             <th scope="col">Gambar</th>
             <th scope="col">Aksi</th>
+            <th scope="col">Updated_at</th>
+            <th scope="col">Updated_by</th>
           </tr>
         </thead>
         <tbody>
@@ -148,6 +161,8 @@ include_once "../../src/php/db.php";
                   <button type="submit" name="delete_produk" class="btn btn-danger">Delete</button>
                 </form>
               </td>
+              <td><?= $row['updated_at'] ?></td>
+              <td><?= $row['updated_by'] ?></td>
             </tr>
             <?php $i++; ?>
           <?php endwhile; ?>

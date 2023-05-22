@@ -1,8 +1,17 @@
 <?php
+// pastikan sesi sudah dimulai
+session_start();
+
+// periksa apakah pengguna sudah login
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+  // pengguna belum login, arahkan ke halaman login
+  header('Location: login.php');
+  exit;
+}
 
 include_once "db.php";
 
-// Hapus ategori 
+// Hapus kategori 
 if (isset($_POST['delete_kategori'])) {
   $id = $_POST['id'];
 
@@ -20,8 +29,19 @@ if (isset($_POST['edit_kategori'])) {
   $id = $_POST['id'];
   $kategori = $_POST['kategori'];
 
+  // Mengambil nilai created_at dari database
+  $query = "SELECT created_at FROM kategori_produk WHERE id='$id'";
+  $result = mysqli_query($conn, $query);
+  $row = mysqli_fetch_assoc($result);
+  $created_at = $row['created_at'];
+  $updated_at = date('Y-m-d');
+
+  $created_by = NULL;
+  $updated_by = $_SESSION['username'];
+
   // Update data
-  $query = "UPDATE kategori_produk SET kategori='$kategori' WHERE id=$id";
+  $query = "UPDATE kategori_produk SET kategori='$kategori', created_at='$created_at', updated_at='$updated_at', created_by='$created_by', updated_by='$updated_by' WHERE id='$id'";
+
   $result = mysqli_query($conn, $query);
 
   if (!$result) {
@@ -30,12 +50,16 @@ if (isset($_POST['edit_kategori'])) {
   header('Location: ../../view/admin_page/products.php');
 }
 
-// Tambah ategori 
+// Tambah kategori 
 if (isset($_POST['add_kategori'])) {
   $kategori = $_POST['kategori'];
+  $created_at = date('Y-m-d');
+  $updated_at = NULL;
+  $created_by = $_SESSION['username'];
+  $updated_by = NULL;
 
   // Add data
-  $query = "INSERT INTO kategori_produk (kategori) VALUES ('$kategori')";
+  $query = "INSERT INTO kategori_produk (kategori, created_at, updated_at, created_by, updated_by) VALUES ('$kategori', '$created_at', '$updated_at', '$created_by', '$updated_by')";
   $result = mysqli_query($conn, $query);
 
   if (!$result) {
@@ -48,6 +72,10 @@ if (isset($_POST['add_kategori'])) {
 if (isset($_POST['add_produk'])) {
   $nama_produk = $_POST['nama_produk'];
   $kategori = $_POST['kategori'];
+  $created_at = date('Y-m-d');
+  $updated_at = NULL;
+  $created_by = $_SESSION['username'];
+  $updated_by = NULL;
 
   // mengambil informasi file gambar yang diupload
   $gambar_produk = $_FILES['gambar_produk']['name'];
@@ -65,7 +93,7 @@ if (isset($_POST['add_produk'])) {
     if (move_uploaded_file($tmp_gambar, $path . $gambar_produk)) {
 
       // menyimpan data produk ke database
-      $sql = "INSERT INTO produk (nama_produk, id_kategori, gambar_produk) VALUES ('$nama_produk', '$kategori', '$gambar_produk')";
+      $sql = "INSERT INTO produk (nama_produk, id_kategori, gambar_produk, created_at, updated_at, created_by, updated_by) VALUES ('$nama_produk', '$kategori', '$gambar_produk', '$created_at', '$updated_at', '$created_by', '$updated_by')";
       if (mysqli_query($conn, $sql)) {
         echo "Produk berhasil ditambahkan.";
       } else {
@@ -128,6 +156,15 @@ if (isset($_POST['update_produk'])) {
   $nama_produk = $_POST['nama_produk'];
   $kategori = $_POST['kategori'];
 
+  $query = "SELECT created_at FROM produk WHERE id='$id'";
+  $result = mysqli_query($conn, $query);
+  $row = mysqli_fetch_assoc($result);
+  $created_at = $row['created_at'];
+  $updated_at = date('Y-m-d');
+  $created_by = NULL;
+  $updated_by = $_SESSION['username'];
+
+
   // Mengambil data gambar dari form
   $nama_file = $_FILES['gambar_produk']['name'];
   $ukuran_file = $_FILES['gambar_produk']['size'];
@@ -164,13 +201,13 @@ if (isset($_POST['update_produk'])) {
       }
 
       // Membuat query untuk mengupdate data produk pada tabel produk
-      $query = "UPDATE produk SET nama_produk='$nama_produk', id_kategori='$kategori', gambar_produk='$nama_file' WHERE id=$id";
+      $query = "UPDATE produk SET nama_produk='$nama_produk', id_kategori='$kategori', gambar_produk='$nama_file', created_at='$created_at', updated_at='$updated_at', created_by='$created_by', updated_by='$updated_by' WHERE id=$id";
     } else {
       die("Gagal mengupload gambar.");
     }
   } else {
     // Membuat query untuk mengupdate data produk pada tabel produk
-    $query = "UPDATE produk SET nama_produk='$nama_produk', id_kategori='$kategori' WHERE id=$id";
+    $query = "UPDATE produk SET nama_produk='$nama_produk', id_kategori='$kategori', created_at='$created_at', updated_at='$updated_at', created_by='$created_by', updated_by='$updated_by' WHERE id=$id";
 
     // Delete the current image file if a new image is not uploaded
     if ($currentImage && file_exists($target_dir . $currentImage)) {

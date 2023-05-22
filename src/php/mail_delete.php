@@ -12,5 +12,5 @@ $query = "DELETE FROM send_mail WHERE id=$id";
 mysqli_query($conn, $query);
 
 mysqli_close($conn);
-header('Location: ../../view/admin_page/index.php');
+header('Location: ../../view/admin_page/mail.php');
 exit();

@@ -1,15 +1,38 @@
 <?php
-// pastikan sesi sudah dimulai
+
+
+include_once '../../src/php/db.php';
+
+// Pastikan sesi sudah dimulai
 session_start();
 
-// periksa apakah pengguna sudah login
+// Periksa apakah pengguna sudah login
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-  // pengguna belum login, arahkan ke halaman login
+  // Pengguna belum login, arahkan ke halaman login
   header('Location: login.php');
   exit;
 }
 
-require_once '../../src/php/db.php';
+$userRole = $_SESSION['role_id'];
+$getPermission = mysqli_query($conn, "SELECT p.name FROM role_has_permission rp 
+                                      JOIN permissions p ON rp.permission_id = p.id 
+                                      WHERE rp.role_id = $userRole");
+$hasEmailPermission = false;
+
+while ($row = mysqli_fetch_assoc($getPermission)) {
+  $permissionName = $row['name'];
+  if ($permissionName === 'settings') {
+    $hasEmailPermission = true;
+    break;
+  }
+}
+
+if (!$hasEmailPermission) {
+  // Tidak memiliki izin akses email, arahkan ke halaman index.php
+  $_SESSION['error_message'] = "Anda tidak memiliki izin untuk mengakses settings.";
+  echo '<div class="alert alert-danger">' . $_SESSION['error_message'] . '</div>';
+  exit;
+}
 
 ?>
 
@@ -33,21 +56,7 @@ require_once '../../src/php/db.php';
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-      <a class="navbar-brand" href="#">Admin Page</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="index.php">Email</a>
-          <a class="nav-item nav-link active" href="settings.php">Settings</a>
-          <a class="nav-item nav-link" href="products.php">Products</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+  <?php include "components/navbar.php" ?>
 
   <div class="container m-5 p-5 mx-auto rounded border" style="background-color: whitesmoke;">
     <h1 class="text-center">Settings</h1>
@@ -185,6 +194,9 @@ require_once '../../src/php/db.php';
     </form>
   </div>
 
+  <form class="mt-5 container" action="../../src/php/logout.php" method="post" onSubmit="return confirm('Anda yakin ingin Keluar?');">
+    <button type="submit" class="btn btn-danger mt-5" name="logout">Logout</button>
+  </form>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

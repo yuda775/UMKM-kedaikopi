@@ -12119,11 +12119,11 @@
               </div>
               <form action="../../src/php/proses_login.php" class="signin-form" method="post">
                 <div class="form-group mt-3">
-                  <input type="text" class="form-control" name="username" required>
+                  <input type="text" class="form-control" name="username" autocomplete="off" required>
                   <label class="form-control-placeholder" for="username">Username</label>
                 </div>
                 <div class="form-group">
-                  <input id="password-field" type="password" name="password" class="form-control" required>
+                  <input id="password-field" type="password" name="password" class="form-control" autocomplete="off" required>
                   <label class="form-control-placeholder" for="password">Password</label>
                   <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                 </div>

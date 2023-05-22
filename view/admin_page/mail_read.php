@@ -72,7 +72,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         mysqli_close($conn);
         ?>
 
-        <a href="index.php" class="btn btn-secondary btn-sm">Kembali</a>
+        <a href="mail.php" class="btn btn-secondary btn-sm">Kembali</a>
       </div>
     </div>
   </div>

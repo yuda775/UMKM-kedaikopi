@@ -16,7 +16,7 @@ if (isset($_POST['username'], $_POST['password'])) {
   $password = mysqli_real_escape_string($conn, $_POST['password']);
 
   // mencari data admin dengan username yang sesuai di dalam tabel admin
-  $query = "SELECT * FROM admin WHERE username='$username'";
+  $query = "SELECT * FROM users WHERE username='$username'";
   $result = mysqli_query($conn, $query);
 
   // memeriksa apakah data admin ditemukan
@@ -28,16 +28,19 @@ if (isset($_POST['username'], $_POST['password'])) {
 
       // menyimpan data login ke dalam session
       $_SESSION['logged_in'] = true;
-      $_SESSION['username'] = $username;
+      $_SESSION['role_id']      = $row['role_id'];
+      $_SESSION['username']  = $username;
 
       // mengarahkan pengguna ke halaman utama atau dashboard
       header('Location: ../../view/admin_page/index.php');
     } else {
       // jika password tidak cocok, menampilkan pesan kesalahan
-      echo "Username atau password salah.";
+      header('Location: ../../view/admin_page/login.php');
+      echo '<div class="alert alert-danger">' . "Username atau password salah" . '</div>';
     }
   } else {
     // jika username tidak ditemukan, menampilkan pesan kesalahan
-    echo "Username atau password salah.";
+    header('Location: ../../view/admin_page/login.php');
+    echo '<div class="alert alert-danger">' . "Username atau password salah" . '</div>';
   }
 }
