@@ -28,8 +28,7 @@ while ($row = mysqli_fetch_assoc($getPermission)) {
 
 if (!$hasEmailPermission) {
   // Tidak memiliki izin akses email, arahkan ke halaman index.php
-  $_SESSION['error_message'] = "Anda tidak memiliki izin untuk mengakses mail.";
-  echo '<div class="alert alert-danger">' . $_SESSION['error_message'] . '</div>';
+  header('Location: components/notfound.php');
   exit;
 }
 

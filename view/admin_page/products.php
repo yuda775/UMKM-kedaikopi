@@ -1,10 +1,9 @@
 <?php
 
-
-include_once '../../src/php/db.php';
-
 // Pastikan sesi sudah dimulai
 session_start();
+
+include_once '../../src/php/db.php';
 
 // Periksa apakah pengguna sudah login
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
@@ -28,9 +27,8 @@ while ($row = mysqli_fetch_assoc($getPermission)) {
 }
 
 if (!$hasEmailPermission) {
-  // Tidak memiliki izin akses email, arahkan ke halaman index.php
-  $_SESSION['error_message'] = "Anda tidak memiliki izin untuk mengakses products.";
-  echo '<div class="alert alert-danger">' . $_SESSION['error_message'] . '</div>';
+  // Tidak memiliki izin akses email, arahkan ke halaman index.php  
+  header('Location: components/notfound.php');
   exit;
 }
 
@@ -70,6 +68,7 @@ if (!$hasEmailPermission) {
           $query = "SELECT * FROM kategori_produk";
           $result = mysqli_query($conn, $query);
           ?>
+
           <?php while ($row = mysqli_fetch_assoc($result)) : ?>
             <li class="list-group-item d-flex justify-content-between rounded">
               <form action="../../src/php/product_action.php" method="post" class="d-flex w-100">

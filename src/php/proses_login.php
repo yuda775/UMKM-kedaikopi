@@ -27,6 +27,11 @@ if (isset($_POST['username'], $_POST['password'])) {
       $_SESSION['logged_in']  = true;
       $_SESSION['role_id']    = $row['role_id'];
       $_SESSION['username']   = $username;
+      $_SESSION['token']      = $_POST['token'];
+      // Setel waktu kedaluwarsa token (misalnya 1 jam dari sekarang)
+      $expirationTime = time() + 15; // 3600 detik = 1 jam
+      $_SESSION['token_expiration'] = $expirationTime;
+
 
       // mengarahkan pengguna ke halaman utama atau dashboard
       header('Location: ../../view/admin_page/index.php');

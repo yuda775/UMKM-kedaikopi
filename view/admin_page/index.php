@@ -12,6 +12,15 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
   exit;
 }
 
+// Periksa waktu kedaluwarsa token
+$expirationTime = $_SESSION['token_expiration'] ?? 0;
+if (time() > $expirationTime) {
+  // Token telah kedaluwarsa, logout pengguna dan arahkan ke halaman login
+  session_destroy();
+  header("Location: login.php");
+  exit;
+}
+
 ?>
 
 <!doctype html>

@@ -1,11 +1,33 @@
 <?php
-// pastikan sesi sudah dimulai
+// Pastikan sesi sudah dimulai
 session_start();
 
-// periksa apakah pengguna sudah login
+// Periksa apakah pengguna sudah login
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-  // pengguna belum login, arahkan ke halaman login
+  // Pengguna belum login, arahkan ke halaman login
   header('Location: login.php');
+  exit;
+}
+
+include_once '../../src/php/db.php';
+
+$userRole = $_SESSION['role_id'];
+$getPermission = mysqli_query($conn, "SELECT p.name FROM role_has_permission rp 
+                                      JOIN permissions p ON rp.permission_id = p.id 
+                                      WHERE rp.role_id = $userRole");
+$hasEmailPermission = false;
+
+while ($row = mysqli_fetch_assoc($getPermission)) {
+  $permissionName = $row['name'];
+  if ($permissionName === 'mail') {
+    $hasEmailPermission = true;
+    break;
+  }
+}
+
+if (!$hasEmailPermission) {
+  // Tidak memiliki izin akses email, arahkan ke halaman index.php
+  header('Location: components/notfound.php');
   exit;
 }
 ?>

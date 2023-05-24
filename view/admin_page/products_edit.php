@@ -2,6 +2,8 @@
   // pastikan sesi sudah dimulai
   session_start();
 
+  include_once "../../src/php/db.php";
+
   // periksa apakah pengguna sudah login
   if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     // pengguna belum login, arahkan ke halaman login
@@ -9,8 +11,25 @@
     exit;
   }
 
-  include_once "../../src/php/db.php";
+  $userRole = $_SESSION['role_id'];
+  $getPermission = mysqli_query($conn, "SELECT p.name FROM role_has_permission rp 
+                                      JOIN permissions p ON rp.permission_id = p.id 
+                                      WHERE rp.role_id = $userRole");
+  $hasEmailPermission = false;
 
+  while ($row = mysqli_fetch_assoc($getPermission)) {
+    $permissionName = $row['name'];
+    if ($permissionName === 'products') {
+      $hasEmailPermission = true;
+      break;
+    }
+  }
+
+  if (!$hasEmailPermission) {
+    // Tidak memiliki izin akses email, arahkan ke halaman index.php  
+    header('Location: components/notfound.php');
+    exit;
+  }
 
   // Mengambil nilai id produk dari form
   $id = $_POST['id'];
