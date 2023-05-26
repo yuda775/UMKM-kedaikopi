@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 23, 2023 at 12:41 AM
+-- Generation Time: May 26, 2023 at 05:06 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -42,9 +42,7 @@ CREATE TABLE `kategori_produk` (
 
 INSERT INTO `kategori_produk` (`id`, `kategori`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
 (24, 'Makanan ', '19-05-23', '2023-05-19', '', 'blabla'),
-(27, 'Minuman', '2023-05-19', '', '', ''),
-(30, 'pizza', '2023-05-19', '', '1', ''),
-(31, 'Cemilan', '2023-05-19', '', 'yuda', '');
+(27, 'Minuman', '2023-05-19', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -64,7 +62,9 @@ CREATE TABLE `permissions` (
 INSERT INTO `permissions` (`id`, `name`) VALUES
 (1, 'settings'),
 (2, 'mail'),
-(3, 'products');
+(3, 'products'),
+(4, 'role'),
+(5, 'users');
 
 -- --------------------------------------------------------
 
@@ -82,14 +82,6 @@ CREATE TABLE `produk` (
   `created_by` varchar(10) NOT NULL,
   `updated_by` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `produk`
---
-
-INSERT INTO `produk` (`id`, `nama_produk`, `id_kategori`, `gambar_produk`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(17, 'Kopi', 27, 'top-view-coffee-cup-coffee-beans-dark-table.jpg', '2023-05-19', '2023-05-19', '', 'blabla'),
-(19, 'Teh', 27, 'grabfood.png', '2023-05-19', '2023-05-19', '', 'blabla');
 
 -- --------------------------------------------------------
 
@@ -109,7 +101,8 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `name`) VALUES
 (1, 'superadmin'),
 (2, 'admin'),
-(3, 'user');
+(3, 'user'),
+(10, 'Email');
 
 -- --------------------------------------------------------
 
@@ -130,8 +123,13 @@ INSERT INTO `role_has_permission` (`role_id`, `permission_id`) VALUES
 (1, 1),
 (1, 2),
 (1, 3),
+(1, 4),
+(1, 5),
 (2, 1),
-(3, 2);
+(2, 2),
+(2, 3),
+(3, 2),
+(10, 2);
 
 -- --------------------------------------------------------
 
@@ -149,6 +147,13 @@ CREATE TABLE `send_mail` (
   `read_status` int(1) NOT NULL,
   `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `send_mail`
+--
+
+INSERT INTO `send_mail` (`id`, `nama_lengkap`, `email`, `no_telepon`, `subjek`, `pesan`, `read_status`, `time_stamp`) VALUES
+(13, 'Saya ', 'saya@gmail.com', '089258834', 'pertanyaan', '???????', 1, '2023-05-25 06:30:51');
 
 -- --------------------------------------------------------
 
@@ -173,7 +178,7 @@ INSERT INTO `settings` (`name`, `value`, `updated_at`) VALUES
 ('facebook', 'kedai kopi', '2023-05-16 07:52:06'),
 ('facebook_profile', 'https://www.facebook.com/dicoding/?locale=id_ID', '2023-05-16 07:52:06'),
 ('img_rekomendasi_1', 'card-coffe.jpg', '2023-05-16 07:52:06'),
-('img_rekomendasi_2', 'kopi.jpg', '2023-05-16 07:52:06'),
+('img_rekomendasi_2', 'top-view-coffee-cup-coffee-beans-dark-table.jpg', '2023-05-25 06:28:26'),
 ('img_rekomendasi_3', 'card-pasta.jpg', '2023-05-16 07:52:06'),
 ('img_rekomendasi_4', 'card-bread.jpg', '2023-05-16 07:52:06'),
 ('img_rekomendasi_5', 'card-pie.jpg', '2023-05-16 07:52:06'),
@@ -192,7 +197,7 @@ INSERT INTO `settings` (`name`, `value`, `updated_at`) VALUES
 ('nama_rekomendasi_4', 'Roti', '2023-05-16 07:52:06'),
 ('nama_rekomendasi_5', 'Pie', '2023-05-16 07:52:06'),
 ('nama_rekomendasi_6', 'Cek Lebih Lanjut', '2023-05-16 07:52:06'),
-('nama_umkm', 'Kedai Kopi ', '2023-05-16 07:52:06'),
+('nama_umkm', 'Kedai Kopi!!!!', '2023-05-25 06:15:42'),
 ('tagline_umkm', 'Kopi nikmat gak bikin kembung', '2023-05-16 07:52:06'),
 ('twitter', '@kedaikopi', '2023-05-16 07:52:06'),
 ('twitter_profile', 'https://twitter.com/mhdnauvalazhar', '2023-05-16 07:52:06'),
@@ -218,8 +223,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `role_id`) VALUES
 (1, 'yuda', 'saputra', 1),
-(2, 'settings', 'settings', 2),
-(3, 'email', 'email', 3);
+(2, 'settings', '1', 2),
+(12, 'Tukang-email', '1', 2);
 
 --
 -- Indexes for dumped tables
@@ -289,31 +294,31 @@ ALTER TABLE `kategori_produk`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `send_mail`
 --
 ALTER TABLE `send_mail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
