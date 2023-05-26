@@ -1,10 +1,9 @@
 <?php
 
-
-include_once '../../src/php/db.php';
-
 // Pastikan sesi sudah dimulai
 session_start();
+
+include_once '../../src/php/db.php';
 
 // Periksa apakah pengguna sudah login
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
@@ -40,15 +39,10 @@ if (!$hasEmailPermission) {
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-  <!-- My CSS -->
-  <link rel="stylesheet" href="assets/stylesheet/settings.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Users</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
   <title>Seetings</title>
 </head>
@@ -77,50 +71,50 @@ if (!$hasEmailPermission) {
         <div class="fluid-images">
           <h4 class="mt-4">Images</h4>
           <div class="custom-file mt-1">
-            <input type="file" class="custom-file-input" id="jumbotron_image" name="jumbotron_image" value="<?php echo getValue('jumbotron_image') ?>" accept=".jpg,.jpeg,.png">
             <label class="custom-file-label" for="jumbotron_image">Jumbotron Image</label>
+            <input type="file" class="form-control" id="jumbotron_image" name="jumbotron_image" value="<?php echo getValue('jumbotron_image') ?>" accept=".jpg,.jpeg,.png">
           </div>
           <h4 class="mt-4">Menu Rekomendasi</h4>
           <div class="row">
             <div class="col-lg-4 col-md-6 mb-3">
               <div class="custom-file">
-                <input type="file" name="img_rekomendasi_1" class="custom-file-input" id="img_rekomendasi_1" value="<?php echo getValue('img_rekomendasi_1') ?>">
                 <label class="custom-file-label" for="img_rekomendasi_1">Rekomendasi 1</label>
+                <input type="file" name="img_rekomendasi_1" class="form-control" id="img_rekomendasi_1" value="<?php echo getValue('img_rekomendasi_1') ?>">
                 <input type="text" class="form-control" name="nama_rekomendasi_1" placeholder="Nama menu rekomendasi 1" value="<?php echo getValue('nama_rekomendasi_1') ?>">
               </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-3">
               <div class="custom-file">
-                <input type="file" name="img_rekomendasi_2" class="custom-file-input" id="img_rekomendasi_2" value="<?php echo getValue('img_rekomendasi_2') ?>">
                 <label class="custom-file-label" for="img_rekomendasi_2">Rekomendasi 2</label>
+                <input type="file" name="img_rekomendasi_2" class="form-control" id="img_rekomendasi_2" value="<?php echo getValue('img_rekomendasi_2') ?>">
                 <input type="text" class="form-control" name="nama_rekomendasi_2" placeholder="Nama menu rekomendasi 2" value="<?php echo getValue('nama_rekomendasi_2') ?>">
               </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-3">
               <div class="custom-file">
-                <input type="file" name="img_rekomendasi_3" class="custom-file-input" id="img_rekomendasi_3" value="<?php echo getValue('img_rekomendasi_3') ?>">
                 <label class="custom-file-label" for="img_rekomendasi_3">Rekomendasi 3</label>
+                <input type="file" name="img_rekomendasi_3" class="form-control" id="img_rekomendasi_3" value="<?php echo getValue('img_rekomendasi_3') ?>">
                 <input type="text" class="form-control" name="nama_rekomendasi_3" placeholder="Nama menu rekomendasi 3" value="<?php echo getValue('nama_rekomendasi_3') ?>">
               </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-3">
               <div class="custom-file">
-                <input type="file" name="img_rekomendasi_4" class="custom-file-input" id="img_rekomendasi_4" value="<?php echo getValue('img_rekomendasi_4') ?>">
                 <label class="custom-file-label" for="img_rekomendasi_4">Rekomendasi 4</label>
+                <input type="file" name="img_rekomendasi_4" class="form-control" id="img_rekomendasi_4" value="<?php echo getValue('img_rekomendasi_4') ?>">
                 <input type="text" class="form-control" name="nama_rekomendasi_4" placeholder="Nama menu rekomendasi 4" value="<?php echo getValue('nama_rekomendasi_4') ?>">
               </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-3">
               <div class="custom-file">
-                <input type="file" name="img_rekomendasi_5" class="custom-file-input" id="img_rekomendasi_5" value="<?php echo getValue('img_rekomendasi_5') ?>">
                 <label class="custom-file-label" for="img_rekomendasi_5">Rekomendasi 5</label>
+                <input type="file" name="img_rekomendasi_5" class="form-control" id="img_rekomendasi_5" value="<?php echo getValue('img_rekomendasi_5') ?>">
                 <input type="text" class="form-control" name="nama_rekomendasi_5" placeholder="Nama menu rekomendasi 5" value="<?php echo getValue('nama_rekomendasi_5') ?>">
               </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-3">
               <div class="custom-file">
-                <input type="file" name="img_rekomendasi_6" class="custom-file-input" id="img_rekomendasi_6" value="<?php echo getValue('img_rekomendasi_6') ?>">
                 <label class="custom-file-label" for="img_rekomendasi_6">Gambar ke 6</label>
+                <input type="file" name="img_rekomendasi_6" class="form-control" id="img_rekomendasi_6" value="<?php echo getValue('img_rekomendasi_6') ?>">
                 <input type="text" class="form-control" name="nama_rekomendasi_6" placeholder="Gambar 6" value="<?php echo getValue('nama_rekomendasi_6') ?>">
               </div>
             </div>
@@ -193,15 +187,7 @@ if (!$hasEmailPermission) {
     </form>
   </div>
 
-  <form class="mt-5 container" action="../../src/php/logout.php" method="post" onSubmit="return confirm('Anda yakin ingin Keluar?');">
-    <button type="submit" class="btn btn-danger mt-5" name="logout">Logout</button>
-  </form>
-
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 
 </html>

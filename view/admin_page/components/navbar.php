@@ -23,7 +23,7 @@ while ($row = mysqli_fetch_assoc($getPermission)) {
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
+      <div class="navbar-nav ms-auto">
 
         <?php if (in_array('mail', $allowedPermissions)) : ?>
           <a class="nav-item nav-link" href="mail.php">Email</a>
@@ -35,6 +35,14 @@ while ($row = mysqli_fetch_assoc($getPermission)) {
 
         <?php if (in_array('products', $allowedPermissions)) : ?>
           <a class="nav-item nav-link" href="products.php">Products</a>
+        <?php endif; ?>
+
+        <?php if (in_array('role', $allowedPermissions)) : ?>
+          <a class="nav-item nav-link" href="role.php">role</a>
+        <?php endif; ?>
+
+        <?php if (in_array('users', $allowedPermissions)) : ?>
+          <a class="nav-item nav-link" href="users.php">users</a>
         <?php endif; ?>
 
       </div>

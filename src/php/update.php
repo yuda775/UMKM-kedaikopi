@@ -118,4 +118,4 @@ for ($i = 1; $i <= 6; $i++) {
 
 
 
-header('Location: ../../index.php');
+header('Location: ../../view/admin_page/settings.php');

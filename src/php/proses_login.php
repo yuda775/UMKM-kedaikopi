@@ -29,7 +29,7 @@ if (isset($_POST['username'], $_POST['password'])) {
       $_SESSION['username']   = $username;
       $_SESSION['token']      = $_POST['token'];
       // Setel waktu kedaluwarsa token (misalnya 1 jam dari sekarang)
-      $expirationTime = time() + 15; // 3600 detik = 1 jam
+      $expirationTime = time() + 3600; // 3600 detik = 1 jam
       $_SESSION['token_expiration'] = $expirationTime;
 
 

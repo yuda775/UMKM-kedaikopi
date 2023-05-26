@@ -47,7 +47,7 @@ if (isset($_POST['edit_kategori'])) {
   if (!$result) {
     die("Query failed: " . mysqli_error($conn));
   }
-  header('Location: ../../view/admin_page/products.php');
+  header('Location: ../../v iew/admin_page/products.php');
 }
 
 // Tambah kategori 
@@ -203,7 +203,13 @@ if (isset($_POST['update_produk'])) {
       // Membuat query untuk mengupdate data produk pada tabel produk
       $query = "UPDATE produk SET nama_produk='$nama_produk', id_kategori='$kategori', gambar_produk='$nama_file', created_at='$created_at', updated_at='$updated_at', created_by='$created_by', updated_by='$updated_by' WHERE id=$id";
     } else {
-      die("Gagal mengupload gambar.");
+      // Membuat query untuk mengupdate data produk pada tabel produk
+      $query = "UPDATE produk SET nama_produk='$nama_produk', id_kategori='$kategori', created_at='$created_at', updated_at='$updated_at', created_by='$created_by', updated_by='$updated_by' WHERE id=$id";
+
+      // Delete the current image file if a new image is not uploaded
+      if ($currentImage && file_exists($target_dir . $currentImage)) {
+        unlink($target_dir . $currentImage);
+      }
     }
   } else {
     // Membuat query untuk mengupdate data produk pada tabel produk
