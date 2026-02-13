@@ -5,13 +5,23 @@ $username   = getenv('DB_USER') ?: "root";
 $password   = getenv('DB_PASS') ?: "";
 $db         = getenv('DB_NAME') ?: "db_kedaikopi";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $db);
+// Create connection with retry logic
+$max_retries = 10;
+$attempts = 0;
+$conn = null;
 
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+do {
+    try {
+        $conn = new mysqli($servername, $username, $password, $db);
+        break; // Connected successfully
+    } catch (mysqli_sql_exception $e) {
+        $attempts++;
+        if ($attempts >= $max_retries) {
+            die("Connection failed: " . $e->getMessage());
+        }
+        sleep(2); // Wait 2 seconds before retrying
+    }
+} while ($attempts < $max_retries);
 
 
 function getValue($name_settings)

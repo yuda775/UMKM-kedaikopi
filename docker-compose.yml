@@ -13,7 +13,8 @@ services:
       - DB_PASS=rootpassword
       - DB_NAME=db_kedaikopi
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     # Mount the source code for easier development
     volumes:
       - .:/var/www/html
@@ -29,3 +30,8 @@ services:
       - ./db_kedaikopi.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
