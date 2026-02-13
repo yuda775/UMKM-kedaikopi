@@ -11,24 +11,19 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-  <!-- my Fonts -->
+  <!-- Google Fonts: Playfair Display & Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- my Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&family=Finger+Paint&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&family=Finger+Paint&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Elsie+Swash+Caps:wght@900&family=Finger+Paint&family=Ubuntu+Mono:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-
-  <!-- my CSS -->
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../src/stylesheet/style.css">
   <link rel="stylesheet" href="../src/stylesheet/menu.css">
 
-  <title>List Menu</title>
+  <title>Our Menu - Daikohi</title>
 </head>
 
 <body>
@@ -127,7 +122,7 @@
       <div class="col-lg-3 col-md-12 col-sm-12 pb-3">
         <h3>Our Social Media</h3>
         <?php
-        include_once 'src/php/db.php';
+        include_once '../src/php/db.php';
 
         $query = "SELECT * FROM settings WHERE name IN ('whatsapp', 'facebook', 'instagram', 'twitter', 'envelope', 'linkedin')";
         $result = mysqli_query($conn, $query);

@@ -1,178 +1,119 @@
+/* Inherits variables and base styles from style.css */
+
+/* Menu Specific */
 body {
-    background-color: #FFEBB7;
+  background-color: var(--bg-dark); /* Ensure consistency */
 }
 
-.nav-color {
-    background-color: #3c3c3cfa;
-}
-
-.navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(175, 175, 175)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-}
-
-.navbar-brand {
-    font-family: 'Elsie Swash Caps', cursive;
-    color: #FFEBB7;
-    font-size: 32px;
-    text-shadow: #000000 2px 3px;
-}
-
-.nav-link {
-    color: #FFEBB7;
-    font-weight: bold;
-    font-size: 16px;
-    margin-left: 30px;
-    text-shadow: #000000 2px 2px;
-}
-
-.nav-link:hover {
-    color: white;
-}
-
-.button {
-    padding: 5px;
-    background-color: #AD8E70;
-    border-radius: 10px;
-    text-shadow: none;
-    color: white;
-
-}
-
+/* Redefine Jumbotron height for menu page if needed, or rely on style.css */
+/* style.css sets height: 100vh. Menu page might want it shorter? 
+   The original menu.css had 300px. Let's make it a header. */
 .jumbotron-fluid {
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.463),
-            rgba(34, 44, 44, 0.45));        
-    background-size: cover;
-    background-position: bottom;
-    height: 300px;
+  height: 40vh; /* Shorter for subpages */
+  min-height: 300px;
 }
 
 .menu-panel {
-    background: #FFFFFF;
-        box-shadow: 0px 2px 30px 13px rgba(0, 0, 0, 0.25);
-        border-radius: 5px;
-    width: 100%;
-    height: 1000px;
-    margin-top: -200px;
-    margin-bottom: 100px;
+  background-color: var(--bg-card);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  margin-top: -100px; /* Overlap with jumbotron */
+  margin-bottom: 80px;
+  padding: 40px;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  z-index: 10;
+}
+
+.menu-header h1 {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+  font-family: "Playfair Display", serif;
+}
+
+/* Category Section */
+.category {
+  margin-bottom: 60px;
+}
+
+.category h2 {
+  color: var(--text-light);
+  font-size: 2rem;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--primary-color);
+  display: inline-block;
+}
+
+.category ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 30px;
+}
+
+.category li {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  transition: var(--transition-fast);
+  border: 1px solid transparent;
+}
+
+.category li:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--primary-color);
+}
+
+.category li img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid var(--accent-orange);
+  transition: var(--transition-fast);
+}
+
+.category li:hover img {
+  transform: scale(1.05);
+  border-color: var(--primary-color);
+}
+
+.category li p {
+  color: var(--text-light);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-panel {
     padding: 20px;
+    margin-top: -50px;
+  }
+
+  .category ul {
+    grid-template-columns: repeat(2, 1fr); /* 2 cols on mobile */
+    gap: 15px;
+  }
+
+  .category li img {
+    width: 100px;
+    height: 100px;
+  }
 }
 
-h1 {
-    font-family: 'Cookie', cursive;
-    text-align: center;
-    font-size: 70px;
-}
-
-h2 {
-    font-family: 'Ubuntu Mono', monospace;
-    text-align: center;
-    font-size: 35px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    margin-top: 30px;
-
-}
-
-hr {
-    background-color: rgba(255, 68, 0, 0.426);
-    width: 80%;
-}
-
-.menu-body {
-    display: flex;      
-    justify-content: space-around;
-    margin-left: 20px;
-    flex-wrap: wrap;    
-    padding: 10px;     
-    height: 850px;
-    overflow-y: scroll;
-}
-
-.menu-body ul li {
-    list-style: none;
-    margin-left: -30px;
-}
-
-ul li img {    
-    width: 150px;
-    height: 150px;
-    border-radius: 100%;
-}
-
-ul li img:hover {
-    border-radius: 5%;
-    transition: 500ms;
-}
-
-.menu-body p {
-    text-align: center;
-    font-weight: bold;
-}
-
-.social-media-group {
-    display: flex;
-    align-items: center;
-    font-size: 30px;
-}
-
-.social-media-group i,
-.information-group i {
-    text-align: center;
-    width: 50px;
-    margin: 5px 0;
-    font-size: 20px;
-}
-
-footer {
-    background-color: #3C3C3C;
-    color: #AD8E70;
-}
-
-.footer-content {
-    margin: 0 auto;
-}
-
-footer h3 {
-    font-family: 'Elsie Swash Caps', cursive;
-    color: #e77c24;
-}
-
-footer p {
-    border-left: #AD8E70 3px solid;
-    padding-left: 10px;
-    font-size: 16px;
-    margin-left: 1px;
-}
-
-footer a {
-    display: block;
-    color: #AD8E70;
-    font-size: 18px;
-}
-
-footer a:hover {
-    color: #FFEBB7;
-}
-
-footer small {
-    color: #e77c24;
-}
-
-@media (max-width: 767.98px) {    
-    nav {
-        background-color: #3c3c3cfa;
-    }
-
-    .button {
-        text-align: center;
-    }
-
-    .menu-panel {
-        width: 90%;
-    }
-
-    h2 {
-        margin-top: 50px;
-    }
+@media (max-width: 480px) {
+  .category ul {
+    grid-template-columns: 1fr; /* 1 col on small phones */
+  }
 }
