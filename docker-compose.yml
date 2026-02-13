@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    container_name: shop_kedaikopi
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASS=rootpassword
+      - DB_NAME=db_kedaikopi
+    depends_on:
+      - db
+    # Mount the source code for easier development
+    volumes:
+      - .:/var/www/html
+
+  db:
+    image: mariadb:10.4
+    container_name: db_kedaikopi
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=db_kedaikopi
+    # Automatically initialize the database with the SQL file
+    volumes:
+      - ./db_kedaikopi.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3306:3306"

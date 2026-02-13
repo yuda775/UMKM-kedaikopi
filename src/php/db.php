@@ -1,9 +1,9 @@
 <?php
 
-$servername = "localhost";
-$username   = "root";
-$password   = "";
-$db         = "db_kedaikopi";
+$servername = getenv('DB_HOST') ?: "localhost";
+$username   = getenv('DB_USER') ?: "root";
+$password   = getenv('DB_PASS') ?: "";
+$db         = getenv('DB_NAME') ?: "db_kedaikopi";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $db);
