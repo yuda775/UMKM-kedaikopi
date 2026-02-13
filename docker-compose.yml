@@ -6,7 +6,7 @@ services:
     container_name: shop_kedaikopi
     restart: always
     ports:
-      - "8888:80"
+      - "8080:80"
     environment:
       - DB_HOST=db
       - DB_USER=root
@@ -20,7 +20,7 @@ services:
       - .:/var/www/html
 
   db:
-    image: docker.io/library/mariadb:10.4
+    image: mariadb:10.4
     container_name: db_kedaikopi
     environment:
       - MYSQL_ROOT_PASSWORD=rootpassword
